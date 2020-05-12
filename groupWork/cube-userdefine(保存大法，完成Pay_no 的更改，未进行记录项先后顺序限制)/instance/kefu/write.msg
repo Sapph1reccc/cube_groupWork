@@ -1,0 +1,10 @@
+{
+	"type":"RECORD_DEFINE",
+	"subtype":"WRITE",
+	"mode":"INT"
+}
+{
+	"Pay_no":"订单0509",
+	"segment":"Deli_addr",
+	"text":"客服写发货地测试"
+}

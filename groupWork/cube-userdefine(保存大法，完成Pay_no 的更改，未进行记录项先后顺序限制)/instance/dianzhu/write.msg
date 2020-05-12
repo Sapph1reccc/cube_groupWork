@@ -1,0 +1,10 @@
+{
+	"type":"RECORD_DEFINE",
+	"subtype":"WRITE",
+	"mode":"INT"
+}
+{
+	"Pay_no":"订单0509",
+	"segment":"isFinished",
+	"text":"店主写功能测试"
+}

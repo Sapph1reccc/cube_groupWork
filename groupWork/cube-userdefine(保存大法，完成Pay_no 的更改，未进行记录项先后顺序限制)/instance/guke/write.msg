@@ -1,0 +1,10 @@
+{
+	"type":"RECORD_DEFINE",
+	"subtype":"WRITE",
+	"mode":"INT"
+}
+{
+	"Pay_no":"订单0509",
+	"segment":"Goods_num",
+	"text":"顾客写货物数量测试"
+}

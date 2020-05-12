@@ -1,0 +1,10 @@
+{
+	"type":"RECORD_DEFINE",
+	"subtype":"WRITE",
+	"mode":"INT"
+}
+{
+	"Pay_no":"订单0509",
+	"segment":"isSent",
+	"text":"多次写测试"
+}
