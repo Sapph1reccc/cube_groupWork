@@ -106,7 +106,9 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	sprintf(minute, "%02d", p->tm_min);
 	sprintf(second, "%02d", p->tm_sec);
 	strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, second)))));
-	puts(timeStamp);
+	printf("\033[44;31;1m下面的写操作执行时间：\033[0m");
+	printf("%s\n",timeStamp);
+	//puts(timeStamp);
 	db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",/*write_data->Pay_no*/timeStamp);
 	if(db_record==NULL)
 	{
