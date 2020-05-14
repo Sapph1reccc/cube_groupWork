@@ -86,8 +86,9 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 		{
 			return_info->return_code=SUCCEED;
 			return_info->return_info=dup_str("login succeed!",0);
-			FILE *out = fopen("/root/groupWork/cube-userdefine/src/user_server/output.txt", "w+");
-			fprintf(out, "%s", login_info->user_name);
+			FILE *out = fopen("/root/groupWork/cube-userdefine/src/user_server/output.txt", "w");
+			//if((login_info->user_name == "guke1") || (login_info->user_name == "guke2"))
+				fprintf(out, "%s", login_info->user_name);
 			fclose(out);
 		}
 		else {	

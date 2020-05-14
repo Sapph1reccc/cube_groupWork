@@ -4,6 +4,7 @@
 	"mode":"INT"
 }
 {
+	"Pay_no":"20200514210807guke2",
 	"segment":"Goods_addr",
 	"text":"物流写货物地址测试"
 }

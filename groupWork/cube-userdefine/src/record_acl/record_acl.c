@@ -81,7 +81,7 @@ int proc_access_write(void * sub_proc,void * recv_msg)
 	}
 	user_label=msg_expand->expand;
 
-	//顾客的写权限定义
+	//顾客的写权限定义if(Strcmp(user_label->user_name, "guke1") == 0)
 	if(user_label->role==CUSTOMER)
 	{
 		if((Strncmp(record_write->segment,"Deli_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isSent",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Goods_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isFinished",DIGEST_SIZE)==0))
@@ -185,6 +185,24 @@ int proc_access_read(void * sub_proc,void * recv_msg)
 		record_data->isFinished="*****";
 		record_data->Goods_name="*****";
 		record_data->Goods_num="*****";
+		new_msg=message_create(TYPE_PAIR(RECORD_DEFINE,RECORD),recv_msg);
+		if(new_msg==NULL)
+			return -EINVAL;
+		message_add_record(new_msg,record_data);
+		ret=ex_module_sendmsg(sub_proc,new_msg);
+		return ret;
+	}
+	//顾客越权读权限定义
+	if((user_label->role==CUSTOMER) && (Strncmp(record_data->Pay_no, user_label->user_name, 5) > 0)){
+		printf("%d\n", Strncmp(record_data->Pay_no, user_label->user_name, 5));
+		record_data->Goods_name="You have NO AUTH to READ other customers' order!";
+		record_data->Goods_num="*****";
+		record_data->Rec_addr="*****";
+		record_data->Deli_addr="*****";
+		record_data->isSent="*****";
+		record_data->isReceived="*****";
+		record_data->Goods_addr="*****";
+		record_data->isFinished="*****";
 		new_msg=message_create(TYPE_PAIR(RECORD_DEFINE,RECORD),recv_msg);
 		if(new_msg==NULL)
 			return -EINVAL;

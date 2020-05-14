@@ -1,0 +1,9 @@
+{
+	"type":"USER_DEFINE",
+	"subtype":"LOGIN",
+	"mode":"INT"
+}
+{
+	"user_name":"guke2",
+	"passwd":"pwguke2",
+}

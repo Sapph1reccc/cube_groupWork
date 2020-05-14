@@ -121,18 +121,35 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	sprintf(hour, "%02d", p->tm_hour);
 	sprintf(minute, "%02d", p->tm_min);
 	sprintf(second, "%02d", p->tm_sec);
-	strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, second)))));
 	//名字
-	char user_name[5];
+	char user_name[5], order_no[32];
 	FILE *name = fopen("/root/groupWork/cube-userdefine/src/user_server/output.txt", "r");
 	fscanf(name, "%s", user_name);
-	strcat(timeStamp, user_name);
-	printf("\033[44;31;1m订单号：\033[0m%s\n", timeStamp);
-	db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",/*write_data->Pay_no*/timeStamp);
+	strcpy(order_no, user_name);	//将读出来的名字复制到order_no
+	strcat(order_no, "__");
+	strcat(order_no, strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, second))))));
+	fclose(name);
+
+	if(Strncmp(user_name, "guke", 4) == 0){
+		if(Strncmp(write_data->Pay_no, user_name, 5) <= 0){	//顾客，随机分配订单号写
+			printf("当前用户为顾客：%s，写订单号将随机分配为：\033[44;31;1m%s\033[0m。\n", user_name, order_no);
+			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",order_no);
+		}else{	//顾客越权写限制定义
+			return_info->return_code=SUCCEED;
+			return_info->return_info=dup_str("You have NO AUTH to write other customers' order(s)!!!",0);
+			goto write_out;
+		}
+	}else{	//非顾客，需自带订单号来写
+		printf("当前用户为\033[40;31;1m非\033[0m顾客：%s，写订单号将根据需求获取\033[44;31;1m（不提供则不写）\033[0m。\n", user_name);
+		db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",write_data->Pay_no);
+	}
 	if(db_record==NULL)
 	{
 		record_data=Talloc0(sizeof(*record_data));
-		record_data->Pay_no = dup_str(timeStamp,0);
+		if(Strncmp(user_name, "guke", 4) == 0)
+			record_data->Pay_no = dup_str(order_no,0);
+		else
+			record_data->Pay_no = dup_str(write_data->Pay_no,0);
 	}
 	else
 	{
@@ -140,7 +157,6 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	}
 
 	//  add write access control code begin
-	
 
 	//  add write access control code end
 
@@ -178,9 +194,7 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 		record_data->isFinished= dup_str(write_data->text,256);	
 	}
         
-
 	memdb_store(record_data,TYPE_PAIR(RECORD_DEFINE,RECORD),NULL);
-
 	return_info->return_code=SUCCEED;
 	return_info->return_info=dup_str("write data succeed!",0);
 

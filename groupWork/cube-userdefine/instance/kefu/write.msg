@@ -4,6 +4,7 @@
 	"mode":"INT"
 }
 {
+	"Pay_no":"20200514210807guke2",
 	"segment":"Deli_addr",
 	"text":"客服写发货地测试"
 }
