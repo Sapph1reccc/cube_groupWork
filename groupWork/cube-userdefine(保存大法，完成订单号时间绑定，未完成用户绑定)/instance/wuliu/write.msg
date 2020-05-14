@@ -1,0 +1,9 @@
+{
+	"type":"RECORD_DEFINE",
+	"subtype":"WRITE",
+	"mode":"INT"
+}
+{
+	"segment":"Goods_addr",
+	"text":"物流写货物地址测试"
+}

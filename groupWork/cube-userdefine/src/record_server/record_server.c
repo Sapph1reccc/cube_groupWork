@@ -17,6 +17,7 @@
 #include "ex_module.h"
 #include "sys_func.h"
 #include "user_define.h"
+//#include "user_server.h"	//后加的，为了订单号加上用户名
 #include "record_define.h"
 #include "record_server.h"
 // add para lib_include
@@ -79,10 +80,24 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	if(return_info==NULL)
 		return -ENOMEM;
 
-// find the user state, 
+	//后加的
 	DB_RECORD * db_record;
-/*
-	db_record=memdb_find_first(TYPE_PAIR(USER_DEFINE,SERVER_STATE),"user_name",write_data->user);
+	/*ret=message_get_record(recv_msg,&login_info,0);
+	if(ret<0)
+		return ret;
+
+	return_info=Talloc0(sizeof(*return_info));
+	if(return_info==NULL)
+		return -ENOMEM;
+	db_record=memdb_find_first(TYPE_PAIR(USER_DEFINE,SERVER_STATE),"user_name",login_info->user_name);
+	return_info->return_info=dup_str(login_info->user_name,0);
+	user_state->curr_state=return_info->return_code;
+	memdb_store(user_state,TYPE_PAIR(USER_DEFINE,SERVER_STATE),NULL);
+	goto write_out;*/
+
+
+// find the user state, 
+/*	db_record=memdb_find_first(TYPE_PAIR(USER_DEFINE,SERVER_STATE),"user_name",write_data->user);
 	if(db_record==NULL)
 	{
 		return_info->return_code=NOUSER;
@@ -91,7 +106,6 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	}
  	user_state=db_record->record;
 */
-
 //	find the record
 	//写的时候强制写的订单号
 	time_t now;
@@ -99,6 +113,8 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	time(&now);
 	p = localtime(&now);
 	char timeStamp[14], month[10], date[8], hour[6], minute[4], second[2];
+	//类型转换后拼接成字符串
+	//时间
 	sprintf(timeStamp, "%d", 1900+p->tm_year);
 	sprintf(month, "%02d", p->tm_mon+1);
 	sprintf(date, "%02d", p->tm_mday);
@@ -106,9 +122,12 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	sprintf(minute, "%02d", p->tm_min);
 	sprintf(second, "%02d", p->tm_sec);
 	strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, second)))));
-	printf("\033[44;31;1m下面的写操作执行时间：\033[0m");
-	printf("%s\n",timeStamp);
-	//puts(timeStamp);
+	//名字
+	char user_name[5];
+	FILE *name = fopen("/root/groupWork/cube-userdefine/src/user_server/output.txt", "r");
+	fscanf(name, "%s", user_name);
+	strcat(timeStamp, user_name);
+	printf("\033[44;31;1m订单号：\033[0m%s\n", timeStamp);
 	db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",/*write_data->Pay_no*/timeStamp);
 	if(db_record==NULL)
 	{
@@ -163,7 +182,7 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	memdb_store(record_data,TYPE_PAIR(RECORD_DEFINE,RECORD),NULL);
 
 	return_info->return_code=SUCCEED;
-	return_info->return_info=dup_str("write data succeed!\n",0);
+	return_info->return_info=dup_str("write data succeed!",0);
 
 	// send a message store notice
     void * type_msg;
@@ -176,7 +195,6 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 
     message_add_record(type_msg,&types_pair);
     ex_module_sendmsg(sub_proc,type_msg);
-	
 
 write_out:
 	new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);	

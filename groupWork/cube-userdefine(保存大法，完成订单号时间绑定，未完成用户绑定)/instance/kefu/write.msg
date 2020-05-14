@@ -1,0 +1,9 @@
+{
+	"type":"RECORD_DEFINE",
+	"subtype":"WRITE",
+	"mode":"INT"
+}
+{
+	"segment":"Deli_addr",
+	"text":"客服写发货地测试"
+}

@@ -82,21 +82,21 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 	else
 	{
 		user_state=db_record->record;
-
 		if(Strncmp(login_info->passwd,user_state->passwd,DIGEST_SIZE)==0)
-		{	
-
+		{
 			return_info->return_code=SUCCEED;
-			return_info->return_info=dup_str("login succeed!\n",0);
+			return_info->return_info=dup_str("login succeed!",0);
+			FILE *out = fopen("/root/groupWork/cube-userdefine/src/user_server/output.txt", "w+");
+			fprintf(out, "%s", login_info->user_name);
+			fclose(out);
 		}
 		else {	
 			return_info->return_code=AUTHFAIL;
 			return_info->return_info=dup_str("password error!\n",0);
 		}
-	user_state->curr_state=return_info->return_code;
-	memdb_store(user_state,TYPE_PAIR(USER_DEFINE,SERVER_STATE),NULL);
+		user_state->curr_state=return_info->return_code;
+		memdb_store(user_state,TYPE_PAIR(USER_DEFINE,SERVER_STATE),NULL);
 	}
-	
 	
 	new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);	
 	if(new_msg==NULL)
