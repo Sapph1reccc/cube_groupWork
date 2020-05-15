@@ -13,13 +13,13 @@
 	"role":"SUPPORT"
 }
 {
-	"user_name":"guke1",
-	"passwd":"pwguke1",
+	"user_name":"guke001",
+	"passwd":"pwguke001",
 	"role":"CUSTOMER"
 }
 {
-	"user_name":"guke2",
-	"passwd":"pwguke2",
+	"user_name":"guke002",
+	"passwd":"pwguke002",
 	"role":"CUSTOMER"
 }
 {

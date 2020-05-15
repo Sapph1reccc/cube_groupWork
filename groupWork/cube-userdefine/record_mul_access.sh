@@ -4,7 +4,8 @@ rm instance/server/lib/RECORD_DEFINE-RECORD.lib	#删除lib记录便于观察
 rm -f instance/server/aspect_policy.cfg
 rm -f instance/dianzhu/aspect_policy.cfg
 rm -f instance/wuliu/aspect_policy.cfg
-rm -f instance/guke/aspect_policy.cfg
+rm -f instance/guke001/aspect_policy.cfg
+rm -f instance/guke002/aspect_policy.cfg
 rm -f instance/kefu/aspect_policy.cfg
 
 yes|cp instance/server/plugin_config.cfg.access instance/server/plugin_config.cfg
@@ -21,18 +22,18 @@ yes|cp instance/wuliu/router_policy.cfg.record instance/dianzhu/router_policy.cf
 yes|cp instance/kefu/sys_config.cfg.record instance/dianzhu/sys_config.cfg
 yes|cp instance/kefu/router_policy.cfg.record instance/dianzhu/router_policy.cfg
 
-yes|cp instance/guke1/sys_config.cfg.record instance/dianzhu/sys_config.cfg
-yes|cp instance/guke1/router_policy.cfg.record instance/dianzhu/router_policy.cfg
+yes|cp instance/guke001/sys_config.cfg.record instance/dianzhu/sys_config.cfg
+yes|cp instance/guke001/router_policy.cfg.record instance/dianzhu/router_policy.cfg
 
-yes|cp instance/guke2/sys_config.cfg.record instance/dianzhu/sys_config.cfg
-yes|cp instance/guke2/router_policy.cfg.record instance/dianzhu/router_policy.cfg
+yes|cp instance/guke002/sys_config.cfg.record instance/dianzhu/sys_config.cfg
+yes|cp instance/guke002/router_policy.cfg.record instance/dianzhu/router_policy.cfg
 sleep 1
 
 sh run_cube.sh exec_def/_user_server.def &
 sleep 1
-sh run_cube.sh exec_def/_guke1_client.def login.msg write.msg read.msg &
+sh run_cube.sh exec_def/_guke001_client.def login.msg write.msg write1.msg read.msg &
 sleep 4
-sh run_cube.sh exec_def/_guke2_client.def login.msg write.msg read.msg &
+sh run_cube.sh exec_def/_guke002_client.def login.msg write.msg write1.msg read.msg &
 sleep 4
 sh run_cube.sh exec_def/_kefu_client.def login.msg write.msg write1.msg & #read.msg &
 sleep 4

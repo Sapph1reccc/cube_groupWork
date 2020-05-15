@@ -193,8 +193,7 @@ int proc_access_read(void * sub_proc,void * recv_msg)
 		return ret;
 	}
 	//顾客越权读权限定义
-	if((user_label->role==CUSTOMER) && ((Strncmp(record_data->Pay_no, user_label->user_name, 5) < 0) || (Strncmp(record_data->Pay_no, user_label->user_name, 5) > 0))){
-		printf("%d\n", Strncmp(record_data->Pay_no, user_label->user_name, 5));
+	if((user_label->role==CUSTOMER) && ((Strncmp(record_data->Pay_no, user_label->user_name, 7) < 0) || (Strncmp(record_data->Pay_no, user_label->user_name, 7) > 0))){
 		record_data->Goods_name="You have NO AUTH to READ other customers' order(s)!";
 		record_data->Goods_num="*****";
 		record_data->Rec_addr="*****";

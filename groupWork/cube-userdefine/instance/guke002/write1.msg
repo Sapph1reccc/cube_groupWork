@@ -1,0 +1,10 @@
+{
+	"type":"RECORD_DEFINE",
+	"subtype":"WRITE",
+	"mode":"INT"
+}
+{
+	"Pay_no":"guke001__20200514221341",
+	"segment":"Goods_num",
+	"text":"顾客002越权写测试"
+}

@@ -107,7 +107,7 @@ int proc_record_write(void * sub_proc,void * recv_msg)
  	user_state=db_record->record;
 */
 //	find the record
-	//写的时候强制写的订单号
+
 	time_t now;
 	struct tm *p;
 	time(&now);
@@ -129,18 +129,23 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	strcat(order_no, "__");
 	strcat(order_no, strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, second))))));
 	fclose(name);
-
+	//顾客，由系统分配订单号
 	if(Strncmp(user_name, "guke", 4) == 0){
-		if(Strncmp(write_data->Pay_no, user_name, 6) <= 0){	//顾客，随机分配订单号写
-			printf("当前用户为顾客：%s，写订单号将随机分配为：\033[44;31;1m%s\033[0m。\n", user_name, order_no);
+		//顾客且非越权写，随机分配订单号写
+		if((Strncmp(order_no, user_name, 7) == 0) && (Strcmp(write_data->Pay_no, "") == 0)){
+			printf("\033[40;33;1m<>\033[0m当前用户为顾客：%s，写订单号将随机分配为：\033[44;31;1m%s\033[0m。\n", user_name, order_no);
 			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",order_no);
-		}else{	//顾客越权写限制定义
+		}
+		//顾客越权写限制定义
+		else{
 			return_info->return_code=SUCCEED;
-			return_info->return_info=dup_str("You have NO AUTH to write other customers' order(s)!!!",0);
+			return_info->return_info=dup_str("You have NO AUTH to WRITE other customers' order(s)!!!",0);
 			goto write_out;
 		}
-	}else{	//非顾客，需自带订单号来写
-		printf("当前用户为\033[40;31;1m非\033[0m顾客：%s，写订单号将根据需求获取\033[44;31;1m（不提供则不写）\033[0m。\n", user_name);
+	}
+	//非顾客，需自带订单号来写
+	else{
+		printf("\033[40;33;1m<>\033[0m当前用户为\033[40;31;1m非\033[0m顾客：%s，写订单号将根据需求获取\033[44;31;1m（不提供则不写）\033[0m。\n", user_name);
 		db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",write_data->Pay_no);
 	}
 	if(db_record==NULL)

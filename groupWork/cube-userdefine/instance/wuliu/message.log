@@ -4,8 +4,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"","receiver_uuid":"","route
     ":"","flow":"FINISH","state":"MATCH","flag":"NULL","ljump":1,"rjump":1,"record_t
     ype":"MESSAGE","record_subtype":"CONN_SYNI","record_num":1,"record_size":90,"exp
-    and_num":0,"expand_size":0,"msg_uuid":"4a155031e5e151a637e1ae97050a69c9d602ca313
-    12b7e2e163daa050ea43f40"},
+    and_num":0,"expand_size":0,"msg_uuid":"cfde8275f6b9f971ff9be1ac57aec0c4ca6eb85da
+    9fd32ce816670a99f2aa1f9"},
 "RECORD":[
     {"uuid":"bad5f91dead22e2249193df8600d4d785bef917ac9a8c11d2bbfe9823e76ed93","serv
         er_name":"server","service":"trust_server","server_addr":"x","flags":0,"nonce":"
@@ -19,8 +19,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"login","flow":"QUERY","state":"MATCH","flag":"NULL","ljum
     p":1,"rjump":1,"record_type":"USER_DEFINE","record_subtype":"LOGIN","record_num"
-    :1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"9cae72d5f1459cef0a
-    2331e614931ceb339ab6f1dfc64a75b86696ca3050eae0"},
+    :1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"3aa2166f8ec380fd55
+    8a242b7f4affb46c9482125017844f1092904701e06518"},
 "RECORD":[
     {"user_name":"wuliu","passwd":"pwwuliu","proc_name":"","machine_uuid":""}
     ],
@@ -32,9 +32,7 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"19d0dbc41442a78ded186330188
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"login","
     flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_type
-    ":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":19,"expan
-    d_num":0,"expand_size":0,"msg_uuid":"9cae72d5f1459cef0a2331e614931ceb339ab6f1dfc
-    64a75b86696ca3050eae0"},
+    ":"USER_DEFINE","flow":"QUERY","rjump":1,"record_subtype":"RETURN"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"login succeed!"}
     ],
@@ -46,8 +44,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"login","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rjum
     p":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"recor
-    d_size":19,"expand_num":0,"expand_size":0,"msg_uuid":"9cae72d5f1459cef0a2331e614
-    931ceb339ab6f1dfc64a75b86696ca3050eae0"},
+    d_size":19,"expand_num":0,"expand_size":0,"msg_uuid":"3aa2166f8ec380fd558a242b7f
+    4affb46c9482125017844f1092904701e06518"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"login succeed!"}
     ],
@@ -59,8 +57,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"record","flow":"QUERY","state":"MATCH","flag":"NULL","lju
     mp":1,"rjump":1,"record_type":"RECORD_DEFINE","record_subtype":"WRITE","record_n
-    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"4cb1c73a616d1a7
-    8b14047b27587b00982061e0e77a88bf5c3f4dfa82f691c82"},
+    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"b5f041c637b53be
+    63eb9677bcac124186b19df33289ea56f0f25fa95f3cdf702"},
 "RECORD":[
     {"Pay_no":"20200514210807guke2","segment":"Goods_addr","text":"物流写货物�
         �址测试"}
@@ -74,8 +72,8 @@
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"record",
     "flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_typ
     e":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":24,"expa
-    nd_num":0,"expand_size":0,"msg_uuid":"4cb1c73a616d1a78b14047b27587b00982061e0e77
-    a88bf5c3f4dfa82f691c82"},
+    nd_num":0,"expand_size":0,"msg_uuid":"b5f041c637b53be63eb9677bcac124186b19df3328
+    9ea56f0f25fa95f3cdf702"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"write data succeed!"}
     ],
@@ -87,8 +85,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"record","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rju
     mp":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"reco
-    rd_size":24,"expand_num":0,"expand_size":0,"msg_uuid":"4cb1c73a616d1a78b14047b27
-    587b00982061e0e77a88bf5c3f4dfa82f691c82"},
+    rd_size":24,"expand_num":0,"expand_size":0,"msg_uuid":"b5f041c637b53be63eb9677bc
+    ac124186b19df33289ea56f0f25fa95f3cdf702"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"write data succeed!"}
     ],
