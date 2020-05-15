@@ -131,7 +131,7 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	fclose(name);
 
 	if(Strncmp(user_name, "guke", 4) == 0){
-		if(Strncmp(write_data->Pay_no, user_name, 5) <= 0){	//顾客，随机分配订单号写
+		if(Strncmp(write_data->Pay_no, user_name, 6) <= 0){	//顾客，随机分配订单号写
 			printf("当前用户为顾客：%s，写订单号将随机分配为：\033[44;31;1m%s\033[0m。\n", user_name, order_no);
 			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",order_no);
 		}else{	//顾客越权写限制定义
