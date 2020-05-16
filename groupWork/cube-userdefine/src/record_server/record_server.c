@@ -82,19 +82,6 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 
 	//后加的
 	DB_RECORD * db_record;
-	/*ret=message_get_record(recv_msg,&login_info,0);
-	if(ret<0)
-		return ret;
-
-	return_info=Talloc0(sizeof(*return_info));
-	if(return_info==NULL)
-		return -ENOMEM;
-	db_record=memdb_find_first(TYPE_PAIR(USER_DEFINE,SERVER_STATE),"user_name",login_info->user_name);
-	return_info->return_info=dup_str(login_info->user_name,0);
-	user_state->curr_state=return_info->return_code;
-	memdb_store(user_state,TYPE_PAIR(USER_DEFINE,SERVER_STATE),NULL);
-	goto write_out;*/
-
 
 // find the user state, 
 /*	db_record=memdb_find_first(TYPE_PAIR(USER_DEFINE,SERVER_STATE),"user_name",write_data->user);
@@ -123,30 +110,36 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	sprintf(second, "%02d", p->tm_sec);
 	//名字
 	char user_name[5], order_no[32];
-	FILE *name = fopen("/root/groupWork/cube-userdefine/src/user_server/output.txt", "r");
+	FILE *name = fopen("./output.txt", "r");
 	fscanf(name, "%s", user_name);
+	fclose(name);
 	strcpy(order_no, user_name);	//将读出来的名字复制到order_no
 	strcat(order_no, "__");
 	strcat(order_no, strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, second))))));
-	fclose(name);
 	//顾客，由系统分配订单号
 	if(Strncmp(user_name, "guke", 4) == 0){
 		//顾客且非越权写，随机分配订单号写
 		if((Strncmp(order_no, user_name, 7) == 0) && (Strcmp(write_data->Pay_no, "") == 0)){
-			printf("\033[40;33;1m<>\033[0m当前用户为顾客：%s，写订单号将随机分配为：\033[44;31;1m%s\033[0m。\n", user_name, order_no);
+			printf("\033[40;33;1m<>\033[0m当前写操作用户为顾客：%s，写订单号将随机分配为：\033[44;31;1m%s\033[0m。\n", user_name, order_no);
 			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",order_no);
 		}
 		//顾客越权写限制定义
 		else{
-			return_info->return_code=SUCCEED;
+			return_info->return_code=AUTHFAIL;
 			return_info->return_info=dup_str("You have NO AUTH to WRITE other customers' order(s)!!!",0);
 			goto write_out;
 		}
 	}
 	//非顾客，需自带订单号来写
 	else{
-		printf("\033[40;33;1m<>\033[0m当前用户为\033[40;31;1m非\033[0m顾客：%s，写订单号将根据需求获取\033[44;31;1m（不提供则不写）\033[0m。\n", user_name);
-		db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",write_data->Pay_no);
+		printf("\033[40;33;1m<>\033[0m当前写操作用户为\033[40;31;1m非顾客\033[0m：%s，写订单号将根据需求获取\033[44;31;1m（不提供则不写）\033[0m。\n", user_name);
+		if(Strncmp(write_data->Pay_no, "guke", 4) == 0)	//订单号有效
+			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",write_data->Pay_no);
+		else{	//订单号无效
+			return_info->return_code=INVALID;
+			return_info->return_info="write data fail! INVALID PAY_NO!!!";
+			goto write_out;
+		}
 	}
 	if(db_record==NULL)
 	{
@@ -204,16 +197,16 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	return_info->return_info=dup_str("write data succeed!",0);
 
 	// send a message store notice
-    void * type_msg;
-    RECORD(MESSAGE,TYPES) types_pair;
+    	void * type_msg;
+    	RECORD(MESSAGE,TYPES) types_pair;
 
-    types_pair.type=TYPE(RECORD_DEFINE);
-    types_pair.subtype=SUBTYPE(RECORD_DEFINE,RECORD);
+    	types_pair.type=TYPE(RECORD_DEFINE);
+    	types_pair.subtype=SUBTYPE(RECORD_DEFINE,RECORD);
+		
+    	type_msg=message_create(TYPE_PAIR(MESSAGE,TYPES),NULL);
 
-    type_msg=message_create(TYPE_PAIR(MESSAGE,TYPES),NULL);
-
-    message_add_record(type_msg,&types_pair);
-    ex_module_sendmsg(sub_proc,type_msg);
+    	message_add_record(type_msg,&types_pair);
+    	ex_module_sendmsg(sub_proc,type_msg);
 
 write_out:
 	new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);	

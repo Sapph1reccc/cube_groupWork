@@ -80,12 +80,20 @@ int proc_access_write(void * sub_proc,void * recv_msg)
 		return -EINVAL;
 	}
 	user_label=msg_expand->expand;
-
-	//顾客的写权限定义if(Strcmp(user_label->user_name, "guke1") == 0)
+	//以下写权限限制的错误信息显示仿照return_xxx的格式，更多用于组内查错方便
+	//顾客的写权限定义
 	if(user_label->role==CUSTOMER)
 	{
 		if((Strncmp(record_write->segment,"Deli_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isSent",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Goods_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isFinished",DIGEST_SIZE)==0))
 		{
+			if(Strncmp(record_write->segment,"Deli_addr",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!顾客无权写发货地址!\"}\n");
+			if(Strncmp(record_write->segment,"isSent",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!顾客无权写是否发货!\"}\n");
+			if(Strncmp(record_write->segment,"Goods_addr",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!顾客无权写货物位置!\"}\n");
+			if(Strncmp(record_write->segment,"isFinished",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!顾客无权写订单是否结束!\"}\n");
 			// permission denied
 			new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);
 			RECORD(USER_DEFINE,RETURN) * err_return = Talloc0(sizeof(*err_return));
@@ -103,6 +111,18 @@ int proc_access_write(void * sub_proc,void * recv_msg)
 	{
 		if((Strncmp(record_write->segment,"Goods_name",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Goods_num",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Rec_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isReceived",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Goods_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isFinished",DIGEST_SIZE)==0))
 		{
+			if(Strncmp(record_write->segment,"Goods_name",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!客服无权写选购商品名称!\"}\n");
+			if(Strncmp(record_write->segment,"Goods_num",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!客服无权写选购商品数量!\"}\n");
+			if(Strncmp(record_write->segment,"Rec_addr",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!客服无权写收货地址!\"}\n");
+			if(Strncmp(record_write->segment,"isReceived",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!客服无权写是否收货!\"}\n");
+			if(Strncmp(record_write->segment,"Goods_addr",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!客服无权写货物位置!\"}\n");
+			if(Strncmp(record_write->segment,"isFinished",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!客服无权写订单是否结束!\"}\n");
 			// permission denied
 			new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);
 			RECORD(USER_DEFINE,RETURN) * err_return = Talloc0(sizeof(*err_return));
@@ -125,6 +145,20 @@ int proc_access_write(void * sub_proc,void * recv_msg)
 	{
 		if((Strncmp(record_write->segment,"Goods_name",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Goods_num",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Rec_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Deli_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isSent",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isReceived",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Goods_addr",DIGEST_SIZE)==0))
 		{
+			if(Strncmp(record_write->segment,"Goods_name",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!店主无权写选购商品名称!\"}\n");
+			if(Strncmp(record_write->segment,"Goods_num",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!店主无权写选购商品数量名称!\"}\n");
+			if(Strncmp(record_write->segment,"Rec_addr",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!店主无权写收货地址!\"}\n");
+			if(Strncmp(record_write->segment,"Deli_addr",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!店主无权写发货地址!\"}\n");
+			if(Strncmp(record_write->segment,"isSent",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!店主无权写是否发货!\"}\n");
+			if(Strncmp(record_write->segment,"isReceived",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!店主无权写是否收货!\"}\n");
+			if(Strncmp(record_write->segment,"Goods_addr",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!店主无权写货物位置!\"}\n");
 			// permission denied
 			new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);
 			RECORD(USER_DEFINE,RETURN) * err_return = Talloc0(sizeof(*err_return));
@@ -142,6 +176,20 @@ int proc_access_write(void * sub_proc,void * recv_msg)
 	{
 		if((Strncmp(record_write->segment,"Goods_name",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Goods_num",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Rec_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"Deli_addr",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isSent",DIGEST_SIZE)==0) || (Strncmp(record_write->segment,"isReceived",DIGEST_SIZE)==0) ||(Strncmp(record_write->segment,"isFinished",DIGEST_SIZE)==0))
 		{
+			if(Strncmp(record_write->segment,"Goods_name",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!物流无权写选购商品名称!\"}\n");
+			if(Strncmp(record_write->segment,"Goods_num",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!物流无权写选购商品数量!\"}\n");
+			if(Strncmp(record_write->segment,"Rec_addr",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!物流无权写收货地址!\"}\n");
+			if(Strncmp(record_write->segment,"Deli_addr",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!物流无权写发货地址!\"}\n");
+			if(Strncmp(record_write->segment,"isSent",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!物流无权写是否发货!\"}\n");
+			if(Strncmp(record_write->segment,"isReceived",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!物流无权写是否收货!\"}\n");
+			if(Strncmp(record_write->segment,"isFinished",DIGEST_SIZE)==0)
+				printf("{\"return_code\":\"AUTHFAIL\",\"return_info\":\"write data fail!物流无权写订单是否结束!\"}\n");
 			// permission denied
 			new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);
 			RECORD(USER_DEFINE,RETURN) * err_return = Talloc0(sizeof(*err_return));
