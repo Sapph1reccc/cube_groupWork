@@ -166,32 +166,68 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	if(ret<0)
 		return -EINVAL;
 	
-	
+	int deliAddr_isSent_flag = 0;
+	int isSent_isReceived_flag = 0;
+	int isSent_goodsAddr_flag = 0;
+	int isReceived_isFinished_flag = 0;
 	if(Strcmp(write_data->segment,"Goods_name")==0){
-		record_data->Goods_name= dup_str(write_data->text,256);		
+		record_data->Goods_name= dup_str(write_data->text,256);
 	}
 	else if(Strcmp(write_data->segment,"Goods_num")==0){
-		record_data->Goods_num= dup_str(write_data->text,256);	
+		record_data->Goods_num= dup_str(write_data->text,256);
 	}
 	else if(Strcmp(write_data->segment,"Rec_addr")==0){
-		record_data->Rec_addr= dup_str(write_data->text,256);	
+		record_data->Rec_addr= dup_str(write_data->text,256);
 	}
 	else if(Strcmp(write_data->segment,"Deli_addr")==0){
-		record_data->Deli_addr= dup_str(write_data->text,256);	
+		record_data->Deli_addr= dup_str(write_data->text,256);
+		deliAddr_isSent_flag = 1;
 	}
 	else if(Strcmp(write_data->segment,"isSent")==0){
-		record_data->isSent= dup_str(write_data->text,256);	
+		if(deliAddr_isSent_flag != 1){
+			record_data->isSent= dup_str("",256);
+			return_info->return_code=INVALID;
+			return_info->return_info=dup_str("写isSent失败! 需要先写收发或地址!",0);
+			goto write_out;
+		}
+		else{
+			isSent_isReceived_flag = 1;
+			isSent_goodsAddr_flag = 1;
+			record_data->isSent= dup_str(write_data->text,256);
+		}
 	}
 	else if(Strcmp(write_data->segment,"isReceived")==0){
-		record_data->isReceived= dup_str(write_data->text,256);	
+		if(isSent_isReceived_flag != 1){
+			record_data->isReceived= dup_str("",256);
+			return_info->return_code=INVALID;
+			return_info->return_info=dup_str("写isReceived失败! 订单需已发出才是否收货!",0);
+			goto write_out;
+		}
+		else{
+			isReceived_isFinished_flag = 1;
+			record_data->isReceived= dup_str(write_data->text,256);
+		}
 	}
 	else if(Strcmp(write_data->segment,"Goods_addr")==0){
-		record_data->Goods_addr= dup_str(write_data->text,256);	
+		if(isSent_goodsAddr_flag != 1){
+			record_data->Goods_addr= dup_str("",256);
+			return_info->return_code=INVALID;
+			return_info->return_info=dup_str("写Goods_addr失败! 货物需已发出才可写具体位置!",0);
+			goto write_out;
+		}
+		else
+			record_data->Goods_addr= dup_str(write_data->text,256);
 	}
 	else if(Strcmp(write_data->segment,"isFinished")==0){
+		if(isReceived_isFinished_flag != 1){
+			record_data->isFinished= dup_str("",256);
+			return_info->return_code=INVALID;
+			return_info->return_info=dup_str("写isFinished失败! 需要顾客确认送达后才可结束订单!",0);
+			goto write_out;
+		}
+		else
 		record_data->isFinished= dup_str(write_data->text,256);	
 	}
-        
 	memdb_store(record_data,TYPE_PAIR(RECORD_DEFINE,RECORD),NULL);
 	return_info->return_code=SUCCEED;
 	return_info->return_info=dup_str("write data succeed!",0);
