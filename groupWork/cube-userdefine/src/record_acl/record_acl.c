@@ -233,6 +233,12 @@ int proc_access_read(void * sub_proc,void * recv_msg)
 		record_data->isFinished="*****";
 		record_data->Goods_name="*****";
 		record_data->Goods_num="*****";
+		record_data->Rec_addr="";
+		record_data->Deli_addr="";
+		record_data->isSent="";
+		record_data->isReceived="";
+		record_data->Goods_addr="";
+		record_data->isFinished="";
 		new_msg=message_create(TYPE_PAIR(RECORD_DEFINE,RECORD),recv_msg);
 		if(new_msg==NULL)
 			return -EINVAL;
@@ -257,6 +263,11 @@ int proc_access_read(void * sub_proc,void * recv_msg)
 		ret=ex_module_sendmsg(sub_proc,new_msg);
 		return ret;
 	}
+	if((Strcmp(record_data->Goods_name, "") == 0) && (Strcmp(record_data->Goods_num, "") == 0) && (Strcmp(record_data->Rec_addr, "") == 0) && (Strcmp(record_data->Deli_addr, "") == 0) && (Strcmp(record_data->isSent, "") == 0) && (Strcmp(record_data->isReceived, "") == 0) && (Strcmp(record_data->Goods_addr, "") == 0) && (Strcmp(record_data->isFinished, "") == 0)){
+			printf("\033[43;37;5m!!!\033[0m您所读订单号：%s为空订单号，请查正后再读取!\n", record_data->Pay_no);
+			goto end;
+	}
 	ret=ex_module_sendmsg(sub_proc,recv_msg);
 	return ret;
+	end:;
 }

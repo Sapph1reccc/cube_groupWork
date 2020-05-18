@@ -115,7 +115,7 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	fclose(name);
 	strcpy(order_no, user_name);	//将读出来的名字复制到order_no
 	strcat(order_no, "__");
-	strcat(order_no, strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, second))))));
+	strcat(order_no, strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, strcat(second, "__YT")))))));
 	//顾客，由系统分配订单号
 	if(Strncmp(user_name, "guke", 4) == 0){
 		//顾客且非越权写，随机分配订单号写
