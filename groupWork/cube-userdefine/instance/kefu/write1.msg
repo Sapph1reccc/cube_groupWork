@@ -6,5 +6,5 @@
 {
 	"Pay_no":"guke002__20200514210807",
 	"segment":"isSent",
-	"text":"多次写测试"
+	"text":"kefu writes isSent"
 }

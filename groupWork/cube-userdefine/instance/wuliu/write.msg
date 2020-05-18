@@ -4,7 +4,7 @@
 	"mode":"INT"
 }
 {
-	"Pay_no":"123",
+	"Pay_no":"guke002__20200514210807",
 	"segment":"Goods_addr",
-	"text":"物流写货物地址测试"
+	"text":"wuliu writes Goods_addr test"
 }

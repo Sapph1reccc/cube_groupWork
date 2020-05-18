@@ -39,4 +39,4 @@ sh run_cube.sh exec_def/_kefu_client.def login.msg write.msg write1.msg & #read.
 sleep 4
 sh run_cube.sh exec_def/_wuliu_client.def login.msg write.msg read.msg &
 sleep 4
-sh run_cube.sh exec_def/_dianzhu_client.def login.msg write.msg write1.msg #read.msg
+sh run_cube.sh exec_def/_dianzhu_client.def login.msg write.msg write1.msg read.msg
