@@ -4,8 +4,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"","receiver_uuid":"","route
     ":"","flow":"FINISH","state":"MATCH","flag":"NULL","ljump":1,"rjump":1,"record_t
     ype":"MESSAGE","record_subtype":"CONN_SYNI","record_num":1,"record_size":89,"exp
-    and_num":0,"expand_size":0,"msg_uuid":"b942d9424b0388273f7dea05413a9705ec1ecffab
-    7dfd619b60b3e0e1f3d96f7"},
+    and_num":0,"expand_size":0,"msg_uuid":"8e06329f787166b03662e14e6635237bc19b549b7
+    11ca51c0276ff4057e584cb"},
 "RECORD":[
     {"uuid":"bad5f91dead22e2249193df8600d4d785bef917ac9a8c11d2bbfe9823e76ed93","serv
         er_name":"server","service":"trust_server","server_addr":"","flags":0,"nonce":"A
@@ -19,8 +19,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"login","flow":"QUERY","state":"MATCH","flag":"NULL","ljum
     p":1,"rjump":1,"record_type":"USER_DEFINE","record_subtype":"LOGIN","record_num"
-    :1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"23473a088ab6d97bba
-    61461f52b90fa64f4d97c8c8aeb7105e6bbf03193f703d"},
+    :1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"1b80ee9743b5e28867
+    bf686d7217733dc6a204541439ced200e08508699ced41"},
 "RECORD":[
     {"user_name":"guke001","passwd":"pwguke001","proc_name":"","machine_uuid":""}
     ],
@@ -33,8 +33,8 @@
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"login","
     flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_type
     ":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":28,"expan
-    d_num":0,"expand_size":0,"msg_uuid":"23473a088ab6d97bba61461f52b90fa64f4d97c8c8a
-    eb7105e6bbf03193f703d"},
+    d_num":0,"expand_size":0,"msg_uuid":"1b80ee9743b5e28867bf686d7217733dc6a20454143
+    9ced200e08508699ced41"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"login succeed!","role":"CUSTOMER"}
     ],
@@ -46,8 +46,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"login","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rjum
     p":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"recor
-    d_size":28,"expand_num":0,"expand_size":0,"msg_uuid":"23473a088ab6d97bba61461f52
-    b90fa64f4d97c8c8aeb7105e6bbf03193f703d"},
+    d_size":28,"expand_num":0,"expand_size":0,"msg_uuid":"1b80ee9743b5e28867bf686d72
+    17733dc6a204541439ced200e08508699ced41"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"login succeed!","role":"CUSTOMER"}
     ],
@@ -59,8 +59,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"record","flow":"QUERY","state":"MATCH","flag":"NULL","lju
     mp":1,"rjump":1,"record_type":"RECORD_DEFINE","record_subtype":"WRITE","record_n
-    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"9ded908bf49b453
-    7023cf6a47d4a5b812bec44d1c2f8d1807eb486518163530d"},
+    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"6a5fb134fedd2c2
+    5aff8446ad3cb39b64593f51b43fe0229e5a5bc84db6ffa54"},
 "RECORD":[
     {"Pay_no":"","segment":"Goods_num","text":"顾客001写货物数量测试"}
     ],
@@ -73,8 +73,8 @@
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"record",
     "flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_typ
     e":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":25,"expa
-    nd_num":0,"expand_size":0,"msg_uuid":"9ded908bf49b4537023cf6a47d4a5b812bec44d1c2
-    f8d1807eb486518163530d"},
+    nd_num":0,"expand_size":0,"msg_uuid":"6a5fb134fedd2c25aff8446ad3cb39b64593f51b43
+    fe0229e5a5bc84db6ffa54"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"write data succeed!","role":""}
     ],
@@ -86,8 +86,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"record","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rju
     mp":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"reco
-    rd_size":25,"expand_num":0,"expand_size":0,"msg_uuid":"9ded908bf49b4537023cf6a47
-    d4a5b812bec44d1c2f8d1807eb486518163530d"},
+    rd_size":25,"expand_num":0,"expand_size":0,"msg_uuid":"6a5fb134fedd2c25aff8446ad
+    3cb39b64593f51b43fe0229e5a5bc84db6ffa54"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"write data succeed!","role":""}
     ],
@@ -99,8 +99,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"record","flow":"QUERY","state":"MATCH","flag":"NULL","lju
     mp":1,"rjump":1,"record_type":"RECORD_DEFINE","record_subtype":"WRITE","record_n
-    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"2bf142ff24e3c68
-    11f2d5996710e2874e8e5902709bbde0fa9cf998ae6b038a6"},
+    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"eaa9668e40c2b8e
+    5adb01a02a02deceff960837cd6a346dd022c8f9ee6753a3e"},
 "RECORD":[
     {"Pay_no":"guke002__20200514221341","segment":"Goods_num","text":"顾客001越�
         �写测试"}
@@ -114,8 +114,8 @@
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"record",
     "flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_typ
     e":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":60,"expa
-    nd_num":0,"expand_size":0,"msg_uuid":"2bf142ff24e3c6811f2d5996710e2874e8e5902709
-    bbde0fa9cf998ae6b038a6"},
+    nd_num":0,"expand_size":0,"msg_uuid":"eaa9668e40c2b8e5adb01a02a02deceff960837cd6
+    a346dd022c8f9ee6753a3e"},
 "RECORD":[
     {"return_code":"AUTHFAIL","return_info":"You have NO AUTH to WRITE other custome
         rs' order(s)!!!","role":""}
@@ -128,8 +128,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"record","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rju
     mp":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"reco
-    rd_size":60,"expand_num":0,"expand_size":0,"msg_uuid":"2bf142ff24e3c6811f2d59967
-    10e2874e8e5902709bbde0fa9cf998ae6b038a6"},
+    rd_size":60,"expand_num":0,"expand_size":0,"msg_uuid":"eaa9668e40c2b8e5adb01a02a
+    02deceff960837cd6a346dd022c8f9ee6753a3e"},
 "RECORD":[
     {"return_code":"AUTHFAIL","return_info":"You have NO AUTH to WRITE other custome
         rs' order(s)!!!","role":""}
@@ -142,8 +142,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"record","flow":"QUERY","state":"MATCH","flag":"NULL","lju
     mp":1,"rjump":1,"record_type":"RECORD_DEFINE","record_subtype":"READ","record_nu
-    m":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"41574a5779fc0049
-    afa1c3f8044e8495c3de6a94a18eaea86fc9ce12edfdfe5c"},
+    m":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"e0f297d89aa595db
+    4a9d7d7fab3b97e1afab2107cb21edbe2ace219108116304"},
 "RECORD":[
     {"Pay_no":"guke002__顾客指定读的订单号"}
     ],
@@ -156,8 +156,8 @@
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"record",
     "flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_typ
     e":"RECORD_DEFINE","record_subtype":"RECORD","record_num":1,"record_size":131,"e
-    xpand_num":0,"expand_size":0,"msg_uuid":"41574a5779fc0049afa1c3f8044e8495c3de6a9
-    4a18eaea86fc9ce12edfdfe5c"},
+    xpand_num":0,"expand_size":0,"msg_uuid":"e0f297d89aa595db4a9d7d7fab3b97e1afab210
+    7cb21edbe2ace219108116304"},
 "RECORD":[
     {"Pay_no":"guke002__顾客指定读的订单号","Goods_name":"You have NO AUTH 
         to READ other customers' order(s)!","Goods_num":"*****","Rec_addr":"*****","Deli
@@ -172,8 +172,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"record","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rju
     mp":1,"record_type":"RECORD_DEFINE","record_subtype":"RECORD","record_num":1,"re
-    cord_size":131,"expand_num":0,"expand_size":0,"msg_uuid":"41574a5779fc0049afa1c3
-    f8044e8495c3de6a94a18eaea86fc9ce12edfdfe5c"},
+    cord_size":131,"expand_num":0,"expand_size":0,"msg_uuid":"e0f297d89aa595db4a9d7d
+    7fab3b97e1afab2107cb21edbe2ace219108116304"},
 "RECORD":[
     {"Pay_no":"guke002__顾客指定读的订单号","Goods_name":"You have NO AUTH 
         to READ other customers' order(s)!","Goods_num":"*****","Rec_addr":"*****","Deli

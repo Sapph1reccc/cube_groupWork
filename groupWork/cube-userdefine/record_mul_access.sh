@@ -1,6 +1,12 @@
 #!/bin/sh
 killall -9 envset_proc
 rm instance/server/lib/RECORD_DEFINE-RECORD.lib	#删除lib记录便于观察
+rm instance/guke001/ORDER_NO.txt
+rm instance/guke002/ORDER_NO.txt
+rm instance/kefu/ORDER_NO.txt
+rm instance/yuantong/ORDER_NO.txt
+rm instance/dianzhu/ORDER_NO.txt
+
 rm -f instance/server/aspect_policy.cfg
 rm -f instance/dianzhu/aspect_policy.cfg
 rm -f instance/yuantong/aspect_policy.cfg

@@ -5,6 +5,6 @@
 }
 {
 	"Pay_no":"guke002__20200514210807",
-	"segment":"Goods_name",
-	"text":"GOODSNAME"
+	"segment":"isFinished",
+	"text":"false"
 }

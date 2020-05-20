@@ -124,6 +124,12 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 		if((Strncmp(order_no, user_name, 7) == 0) && (Strcmp(write_data->Pay_no, "") == 0)){
 			printf("\033[40;33;1m<>\033[0m当前写操作用户为顾客：%s，写订单号将随机分配为：\033[44;31;1m%s\033[0m。\n", user_name, order_no);
 			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",order_no);
+			char order_no_path[30] = "./../";
+			strcat(order_no_path, user_name);
+			strcat(order_no_path, "/ORDER_NO.txt");
+			FILE *Customer_order_no = fopen(order_no_path, "a");
+			fprintf(Customer_order_no, "%s\n", order_no);
+			fclose(Customer_order_no);
 		}
 		//顾客越权写限制定义
 		else{
@@ -135,8 +141,15 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	//非顾客，需自带订单号来写
 	else{
 		printf("\033[40;33;1m<>\033[0m当前写操作用户为\033[40;31;1m非顾客\033[0m：%s，写订单号将根据需求获取\033[44;31;1m（不提供则不写）\033[0m。\n", user_name);
-		if(Strncmp(write_data->Pay_no, "guke", 4) == 0)	//订单号有效
+		if(Strncmp(write_data->Pay_no, "guke", 4) == 0){	//订单号有效
+			char order_no_path[30] = "./../";
+			strcat(order_no_path, user_name);
+			strcat(order_no_path, "/ORDER_NO.txt");
+			FILE *Customer_order_no = fopen(order_no_path, "a");
+			fprintf(Customer_order_no, "%s\n", write_data->Pay_no);
+			fclose(Customer_order_no);
 			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",write_data->Pay_no);
+		}
 		else{	//订单号无效
 			return_info->return_code=INVALID;
 			return_info->return_info=dup_str("write data fail! INVALID PAY_NO!!!", 0);
