@@ -112,6 +112,8 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	char user_name[5], order_no[32];
 	FILE *name = fopen("./output.txt", "r");
 	fscanf(name, "%s", user_name);
+	truncate("./output.txt", 0);	//清空文件
+//	memset(user_name,'\0',sizeof(user_name));
 	fclose(name);
 	strcpy(order_no, user_name);	//将读出来的名字复制到order_no
 	strcat(order_no, "__");
@@ -137,7 +139,7 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",write_data->Pay_no);
 		else{	//订单号无效
 			return_info->return_code=INVALID;
-			return_info->return_info="write data fail! INVALID PAY_NO!!!";
+			return_info->return_info=dup_str("write data fail! INVALID PAY_NO!!!", 0);
 			goto write_out;
 		}
 	}
@@ -165,7 +167,6 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	ret = struct_write_elem_text(write_data->segment,record_data,write_data->text,record_template);
 	if(ret<0)
 		return -EINVAL;
-	
 	int deliAddr_isSent_flag = 0;
 	int isSent_isReceived_flag = 0;
 	int isSent_goodsAddr_flag = 0;
@@ -243,7 +244,6 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 
     	message_add_record(type_msg,&types_pair);
     	ex_module_sendmsg(sub_proc,type_msg);
-
 write_out:
 	new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);	
 	if(new_msg==NULL)

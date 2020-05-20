@@ -30,7 +30,6 @@ yes|cp instance/guke002/router_policy.cfg.record instance/dianzhu/router_policy.
 sleep 1
 
 sh run_cube.sh exec_def/_user_server.def &
-sleep 1
 sh run_cube.sh exec_def/_guke001_client.def login.msg write.msg write1.msg read.msg &
 sleep 4
 sh run_cube.sh exec_def/_guke002_client.def login.msg write.msg write1.msg read.msg &

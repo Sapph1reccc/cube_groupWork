@@ -134,11 +134,6 @@ int proc_access_write(void * sub_proc,void * recv_msg)
 			ret=ex_module_sendmsg(sub_proc,new_msg);
 			return ret;
 		}
-		else if(Strncmp(record_write->segment,"isSent",DIGEST_SIZE)==0)
-		{
-				printf("\033[40;31;1m**************************\n*客服写isSent顺序不正确!!*\n**************************\033[0m\n");
-			
-		}
 	}
 	//店主的写权限定义
 	if(user_label->role==SHOPKEEPER)

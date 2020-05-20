@@ -62,7 +62,7 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 	RECORD(USER_DEFINE,LOGIN) * login_info;
 	RECORD(USER_DEFINE,RETURN) * return_info;
 	void * new_msg;
-	
+	char *role_name[]={"SHOPKEEPER", "SUPPORT", "CUSTOMER", "LOGISTICS"};
 	ret=message_get_record(recv_msg,&login_info,0);
 	if(ret<0)
 		return ret;
@@ -70,7 +70,7 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 	return_info=Talloc0(sizeof(*return_info));
 	if(return_info==NULL)
 		return -ENOMEM;
-
+	
 	DB_RECORD * db_record;
 
 	db_record=memdb_find_first(TYPE_PAIR(USER_DEFINE,SERVER_STATE),"user_name",login_info->user_name);
@@ -84,11 +84,12 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 		user_state=db_record->record;
 		if(Strncmp(login_info->passwd,user_state->passwd,DIGEST_SIZE)==0)
 		{
-			return_info->return_code=SUCCEED;
-			return_info->return_info=dup_str("login succeed!",0);
 			FILE *out = fopen("./output.txt", "w+");
 			fprintf(out, "%s", login_info->user_name);
 			fclose(out);
+			return_info->return_code=SUCCEED;
+			return_info->return_info=dup_str("login succeed!",0);
+			return_info->role=dup_str(role_name[user_state->role - 1],0);
 		}
 		else {	
 			return_info->return_code=AUTHFAIL;

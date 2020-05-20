@@ -57,4 +57,5 @@ typedef struct user_define_server_state{
 typedef struct user_define_return{
 	UINT32 return_code;
 	char * return_info;
+	char * role;
 }__attribute__((packed)) RECORD(USER_DEFINE,RETURN);

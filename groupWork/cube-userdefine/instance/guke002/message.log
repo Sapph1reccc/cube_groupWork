@@ -4,8 +4,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"","receiver_uuid":"","route
     ":"","flow":"FINISH","state":"MATCH","flag":"NULL","ljump":1,"rjump":1,"record_t
     ype":"MESSAGE","record_subtype":"CONN_SYNI","record_num":1,"record_size":90,"exp
-    and_num":0,"expand_size":0,"msg_uuid":"85afff1346731051ab56feca5385795b8db7e847e
-    3391fa2fa253947ed6d53a1"},
+    and_num":0,"expand_size":0,"msg_uuid":"4774d9a81e8bb67e2fc9b00a55f191573535638cd
+    f1086253dba7e64888d814f"},
 "RECORD":[
     {"uuid":"bad5f91dead22e2249193df8600d4d785bef917ac9a8c11d2bbfe9823e76ed93","serv
         er_name":"server","service":"trust_server","server_addr":"x","flags":0,"nonce":"
@@ -19,8 +19,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"login","flow":"QUERY","state":"MATCH","flag":"NULL","ljum
     p":1,"rjump":1,"record_type":"USER_DEFINE","record_subtype":"LOGIN","record_num"
-    :1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"ec0e012fa6abcf8952
-    4a8be6d697553bb74b4b9a82e3a27f54c10546f1cf8f3f"},
+    :1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"7fed667657ac1a95cf
+    30374f613e01eb95b03aea6d503a9bca341fceb6d46c53"},
 "RECORD":[
     {"user_name":"guke002","passwd":"pwguke002","proc_name":"","machine_uuid":""}
     ],
@@ -32,11 +32,11 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"19d0dbc41442a78ded186330188
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"login","
     flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_type
-    ":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":19,"expan
-    d_num":0,"expand_size":0,"msg_uuid":"ec0e012fa6abcf89524a8be6d697553bb74b4b9a82e
-    3a27f54c10546f1cf8f3f"},
+    ":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":28,"expan
+    d_num":0,"expand_size":0,"msg_uuid":"7fed667657ac1a95cf30374f613e01eb95b03aea6d5
+    03a9bca341fceb6d46c53"},
 "RECORD":[
-    {"return_code":"SUCCEED","return_info":"login succeed!"}
+    {"return_code":"SUCCEED","return_info":"login succeed!","role":"CUSTOMER"}
     ],
 "EXPAND" :[]
 }
@@ -46,10 +46,10 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"login","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rjum
     p":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"recor
-    d_size":19,"expand_num":0,"expand_size":0,"msg_uuid":"ec0e012fa6abcf89524a8be6d6
-    97553bb74b4b9a82e3a27f54c10546f1cf8f3f"},
+    d_size":28,"expand_num":0,"expand_size":0,"msg_uuid":"7fed667657ac1a95cf30374f61
+    3e01eb95b03aea6d503a9bca341fceb6d46c53"},
 "RECORD":[
-    {"return_code":"SUCCEED","return_info":"login succeed!"}
+    {"return_code":"SUCCEED","return_info":"login succeed!","role":"CUSTOMER"}
     ],
 "EXPAND" :[]
 }
@@ -59,8 +59,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"record","flow":"QUERY","state":"MATCH","flag":"NULL","lju
     mp":1,"rjump":1,"record_type":"RECORD_DEFINE","record_subtype":"WRITE","record_n
-    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"8f418dc0050c7ed
-    6723fa29354942726005b7fa42551c9d5f8b660881697ebd9"},
+    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"9e55049095fb1c9
+    ec8513495b3a3cb5dab9a993641a35da2d9f4c88f1ba38056"},
 "RECORD":[
     {"Pay_no":"","segment":"Goods_num","text":"顾客002写货物数量测试"}
     ],
@@ -72,11 +72,11 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"19d0dbc41442a78ded186330188
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"record",
     "flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_typ
-    e":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":24,"expa
-    nd_num":0,"expand_size":0,"msg_uuid":"8f418dc0050c7ed6723fa29354942726005b7fa425
-    51c9d5f8b660881697ebd9"},
+    e":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":25,"expa
+    nd_num":0,"expand_size":0,"msg_uuid":"9e55049095fb1c9ec8513495b3a3cb5dab9a993641
+    a35da2d9f4c88f1ba38056"},
 "RECORD":[
-    {"return_code":"SUCCEED","return_info":"write data succeed!"}
+    {"return_code":"SUCCEED","return_info":"write data succeed!","role":""}
     ],
 "EXPAND" :[]
 }
@@ -86,10 +86,10 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"record","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rju
     mp":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"reco
-    rd_size":24,"expand_num":0,"expand_size":0,"msg_uuid":"8f418dc0050c7ed6723fa2935
-    4942726005b7fa42551c9d5f8b660881697ebd9"},
+    rd_size":25,"expand_num":0,"expand_size":0,"msg_uuid":"9e55049095fb1c9ec8513495b
+    3a3cb5dab9a993641a35da2d9f4c88f1ba38056"},
 "RECORD":[
-    {"return_code":"SUCCEED","return_info":"write data succeed!"}
+    {"return_code":"SUCCEED","return_info":"write data succeed!","role":""}
     ],
 "EXPAND" :[]
 }
@@ -99,8 +99,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"record","flow":"QUERY","state":"MATCH","flag":"NULL","lju
     mp":1,"rjump":1,"record_type":"RECORD_DEFINE","record_subtype":"WRITE","record_n
-    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"4f9b9ff97ef81a3
-    43dc00f133a764b77419a4cbb2c1ddd1707dbaf261c378bf2"},
+    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"772e45670ea5e3c
+    340a36b38d7a22385f7a8598dd86e02b16adf73376cb01951"},
 "RECORD":[
     {"Pay_no":"guke001__20200514221341","segment":"Goods_num","text":"顾客002越�
         �写测试"}
@@ -113,12 +113,12 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"19d0dbc41442a78ded186330188
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"record",
     "flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_typ
-    e":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":59,"expa
-    nd_num":0,"expand_size":0,"msg_uuid":"4f9b9ff97ef81a343dc00f133a764b77419a4cbb2c
-    1ddd1707dbaf261c378bf2"},
+    e":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":60,"expa
+    nd_num":0,"expand_size":0,"msg_uuid":"772e45670ea5e3c340a36b38d7a22385f7a8598dd8
+    6e02b16adf73376cb01951"},
 "RECORD":[
     {"return_code":"AUTHFAIL","return_info":"You have NO AUTH to WRITE other custome
-        rs' order(s)!!!"}
+        rs' order(s)!!!","role":""}
     ],
 "EXPAND" :[]
 }
@@ -128,11 +128,11 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"record","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rju
     mp":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"reco
-    rd_size":59,"expand_num":0,"expand_size":0,"msg_uuid":"4f9b9ff97ef81a343dc00f133
-    a764b77419a4cbb2c1ddd1707dbaf261c378bf2"},
+    rd_size":60,"expand_num":0,"expand_size":0,"msg_uuid":"772e45670ea5e3c340a36b38d
+    7a22385f7a8598dd86e02b16adf73376cb01951"},
 "RECORD":[
     {"return_code":"AUTHFAIL","return_info":"You have NO AUTH to WRITE other custome
-        rs' order(s)!!!"}
+        rs' order(s)!!!","role":""}
     ],
 "EXPAND" :[]
 }
@@ -142,8 +142,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"record","flow":"QUERY","state":"MATCH","flag":"NULL","lju
     mp":1,"rjump":1,"record_type":"RECORD_DEFINE","record_subtype":"READ","record_nu
-    m":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"e7b4d5e9687c18bf
-    2a151d5490de6d19be5a9daa35ddc652e3096ea863be620c"},
+    m":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"f1a82ecb25d4e48a
+    4ad474adf9053d2d5ee139a6b61dd0d06d21be0c5e110a52"},
 "RECORD":[
     {"Pay_no":"guke002__顾客指定读的订单号"}
     ],
