@@ -1,9 +1,0 @@
-{
-	"type":"RECORD_DEFINE",
-	"subtype":"WRITE",
-	"mode":"INT"
-}
-{
-	"segment":"Goods_num",
-	"text":"顾客2写货物数量测试"
-}
