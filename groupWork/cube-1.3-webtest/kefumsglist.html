@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="styleoflist.css">
+</head>
+<body>
+<div id="list">
+    <h1>订单编号</h1>
+    <table>
+        <thead>
+        <tr>
+            <th style="width: 50px">编号</th>
+            <th style="width: 500px">订单号</th>
+            <th style="width: 50px">操作</th>
+        </tr>
+        <tbody>
+        <tr>
+            <th>1</th>
+            <th><input id="input1" type="text" value="fksdhsjka23231" readonly="readonly"></th>
+            <th><input type="button" value="查看" onclick="sendvalue('input1')"></th>
+        </tr>
+        <tr>
+            <th>2</th>
+            <th><input id="input2" type="text" value="" readonly="readonly"></th>
+            <th><input type="button" value="查看" onclick="sendvalue('input2')"></th>
+        </tr>
+        <tr>
+            <th>3</th>
+            <th><input id="input3" type="text" value="" readonly="readonly"></th>
+            <th><input type="button" value="查看" onclick="sendvalue('input3')"></th>
+        </tr>
+        <tr>
+            <th>4</th>
+            <th><input id="input4" type="text" value="" readonly="readonly"></th>
+            <th><input type="button" value="查看" onclick="sendvalue('input4')"></th>
+        </tr>
+        <tr>
+            <th>5</th>
+            <th><input id="input5" type="text" value="" readonly="readonly"></th>
+            <th><input type="button" value="查看" onclick="sendvalue('input5')"></th>
+        </tr>
+        </tbody>
+        </thead>
+    </table>
+    <br><br><br>
+    <div>
+        <input type="button"  value="刷新" onclick="sendrole()" style="width: 100px">
+        <input type="submit" onclick="window.open('index.html')" value="返回"  style="width: 100px">
+    </div>
+</div>
+<div id="kefu">
+    <div>
+        <h1>订单号：<input id="info_no" type="text" style="width: 270px; height: 30px;" readonly="readonly" value="testinfo"></h1>
+        <h2>商品信息</h2>
+        <lable>商品名称：<input type="text" value="C语言程序设计" readonly="true"></lable>
+        <lable>商品数量：<input type="text" value="2" readonly="readonly" style="width: 40px;"></lable>
+    </div>
+    <div>
+        <h2>付款方信息</h2>
+        <label>付款人地址：<input type="text" placeholder="付款人地址" size="40" readonly="readonly"></label>
+    </div>
+    <div>
+        <h2>发货方信息</h2>
+        <label>发货人地址：<input id="sendaddr" type="text" placeholder="发货人地址" size="40"></label>
+    </div>
+    <div>
+        <h2>货物信息</h2>
+        <lable>是否发货:<input name="issend" type="radio" onclick="issend()" value="true">是
+            <input name="issend" type="radio" onclick="issend()" checked="checked" value="false">否</lable>&nbsp;
+        <input type="hidden" id="hide" value="false">
+        <!--<label>物流编号:<input type="text"></label>-->
+    </div>
+    <br>
+    <div>
+        <input type="button" onclick="myFunction()" value="确认" style="width: 70px; height: 30px;">
+    </div>
+</div>
+<script>
+    function issend(){
+        var ora=document.getElementsByName('issend');
+        for(var i=0;i<ora.length;i++)
+        {
+            if(ora[i].checked==true)
+            {
+                document.getElementById('hide').value=ora[i].value;
+            }
+        }
+    }
+</script>
+<script type="text/javascript" src="message.js"></script>
+<script type="text/javascript">
+    var isconnected=false;
+    var input1 = document.getElementById("info_no");
+    var input2 = document.getElementById("sendaddr");
+    var input3 = document.getElementById("hide");
+    var wsock;
+
+    var plainmsg = {"head":"","record":"","expand":""};
+    plainmsg["head"]={"tag":"MESG","version":65537};
+    var jsonstr = JSON.stringify(plainmsg);
+
+        if (isconnected) {
+            alert("已连接服务器！");
+        }
+
+        //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
+        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
+
+        wsock.onopen = function (e) {
+            if (!isconnected) {
+                isconnected = true;
+                alert("连接成功！")
+            }
+            return;
+        };
+        wsock.onclose = function (e) {
+        };
+        wsock.onerror = function (e) {
+        };
+        wsock.onmessage = function (e) {
+            var msg;
+            msg = JSON.parse(e.data);
+            //          if (msg.replace(/(^s*)|(s*$)/g, "").length != 0) {
+            //             alert(msg);
+            //         }
+            //           for (var key in msg.RECORD) {
+
+            //          }
+        }
+
+    function sendrole(){
+        var atxt=document.getElementsByClassName('t1');
+        var abtn=document.getElementsByClassName('t2');
+        for(var i=0;i<atxt.length;i++)
+        {
+            if(atxt[i]==null)
+            {
+                abtn[i].disabled=true;
+            }
+        }
+        var message1={message:"kefu"};
+        var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        msg.addrecord(message1);
+        wsock.send(msg.output())
+
+
+
+    }
+    function sendvalue(id){
+        if(!isconnected)
+        {
+            alert("连接未建立！")
+            return;
+        }
+        var message1={message:document.getElementById(id).value};
+        var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        msg.addrecord(message1);
+        wsock.send(msg.output())
+
+    }
+    function myFunction() {
+        if(!isconnected)
+        {
+            alert("连接未建立！")
+            return;
+        }
+        var message1 = {message:input1.value};
+        var message2 = {message:input2.value};
+        var message3 = {message:input3.value};
+        var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        msg.addrecord(message1);
+        msg.addrecord(message2);
+        msg.addrecord(message3);
+        wsock.send(msg.output());
+
+
+    }
+</script>
+</body>
+</html>
+
