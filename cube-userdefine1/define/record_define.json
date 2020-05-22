@@ -1,0 +1,102 @@
+{
+	"head":
+	{
+		"name":"dtype_record_define",
+		"type":"TYPELIST"
+	},
+	"record":
+	{
+		"elem_no":1,
+		"elemlist":
+		[
+			"RECORD_DEFINE=0x3210",
+		]
+	}
+}
+{
+	"head":
+	{
+		"name":"subtype_record_define",
+		"type":"SUBTYPELIST"
+	},
+	"record":
+	{
+		"type":"RECORD_DEFINE",
+		"elem_no":3,
+		"elemlist":
+		[
+			"RECORD",
+			"READ",
+			"WRITE"
+		]
+	}
+}
+{
+	"head":
+	{
+		"name":"record_define_record",
+		"type":"RECORDTYPE"
+	},
+	"record":
+	{
+		"type":"RECORD_DEFINE",
+		"subtype":"RECORD",
+		"struct_desc":
+		{
+			"elem_desc":
+			[
+				{"name":"record_no","type":"ESTRING","size":32},	
+				{"name":"stocked_cargo_info","type":"ESTRING","size":256},
+				{"name":"stocked_cargo_num","type":"ESTRING","size":256},
+				{"name":"chosen_cargo_info","type":"ESTRING","size":256},
+				{"name":"chosen_cargo_num","type":"ESTRING","size":256},
+				{"name":"transaction_value","type":"ESTRING","size":256},
+				{"name":"ship_address","type":"ESTRING","size":256},
+				{"name":"is_paid","type":"ESTRING","size":256},
+				{"name":"is_delivered","type":"ESTRING","size":256},
+				{"name":"is_received","type":"ESTRING","size":256},
+			]
+		}
+	}
+}
+
+{
+	"head":
+	{
+		"name":"record_define_read",
+		"type":"RECORDTYPE"
+	},
+	"record":
+	{
+		"type":"RECORD_DEFINE",
+		"subtype":"READ",
+		"struct_desc":
+		{
+			"elem_desc":
+			[
+				{"name":"record_no","type":"ESTRING","size":32}
+			]
+		}
+	}
+}
+{
+	"head":
+	{
+		"name":"record_define_write",
+		"type":"RECORDTYPE"
+	},
+	"record":
+	{
+		"type":"RECORD_DEFINE",
+		"subtype":"WRITE",
+		"struct_desc":
+		{
+			"elem_desc":
+			[
+				{"name":"record_no","type":"ESTRING","size":32},
+				{"name":"segment","type":"ESTRING","size":128},
+				{"name":"text","type":"ESTRING","size":256}
+			]
+		}
+	}
+}
