@@ -1,0 +1,15 @@
+div{
+    padding: 8px 16px;
+    margin: 300px 200px 300px 200px;
+    background-color: aquamarine;
+    align-content: center;
+    text-align: center;
+    border: 1px solid black;
+}
+body{
+    background-image: url("pic/1.jpg");
+    background-position:50% 0%;
+    background-attachment: scroll;
+    background-size: 30% 35%;
+    background-repeat: no-repeat;
+}
