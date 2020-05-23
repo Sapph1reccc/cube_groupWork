@@ -8,6 +8,7 @@
 <body>
 <div id="list">
     <h1>订单编号</h1>
+    <input type="hidden" id="box">
     <table>
         <thead>
         <tr>
@@ -68,6 +69,8 @@
     <div>
         <h2>货物信息</h2>
         <lable>是否发货：<input type="text" style="width: 40px" value="false" readonly="readonly"></lable>
+        <lable>是否收货：<input type="text" style="width: 40px" value="false" readonly="readonly"></lable>
+        <label>货物地址：<input id="goodsaddr" type="text" size="30" readonly="readonly"></label>
     </div>
     <div>
         <h2>货款情况</h2>
@@ -81,6 +84,15 @@
         <input type="button" onclick="myFunction()" value="确认" style="width: 70px; height: 30px;">
     </div>
 </div>
+<script>
+    var loc=location.href;
+    var n1=loc.length;
+    var n2=loc.indexOf('=');
+    var txt=decodeURI(loc.substr(n2+1,n1-n2));
+    var box=document.getElementById('box');
+    box.innerHTML=txt;
+    alert(box.innerHTML);
+</script>
 <script>
     function isfinish(){
         var ora=document.getElementsByName('isfinish');
@@ -109,7 +121,7 @@
     }
 
     //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
-    wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
+    wsock = new WebSocket('ws://'+'192.168.190.128'+':'+'13999'+'/');
 
     wsock.onopen = function (e) {
         if (!isconnected) {
@@ -139,7 +151,7 @@
             alert("连接未建立！")
             return;
         }
-        var message1={message:"dianzhu"};
+        var message1={message:document.getElementById('box').innerHTML};
         var msg = new Cube_msg("MESSAGE","BASE_MSG");
         msg.addrecord(message1);
         wsock.send(msg.output())

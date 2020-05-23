@@ -1,134 +1,238 @@
 time: 0.0 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/namelist.json!
 
-time: 0.000191 :read 4 elem from file /root/groupWork/cube-1.3/proc/main/base_define/dispatchnamelist.json!
+time: 0.000158 :read 4 elem from file /root/groupWork/cube-1.3/proc/main/base_define/dispatchnamelist.json!
 
-time: 0.000300 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/typelist.json!
+time: 0.000292 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/typelist.json!
 
-time: 0.000495 :read 7 elem from file /root/groupWork/cube-1.3/proc/main/base_define/subtypelist.json!
+time: 0.000532 :read 7 elem from file /root/groupWork/cube-1.3/proc/main/base_define/subtypelist.json!
 
-time: 0.000576 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/baseflag.json!
+time: 0.000581 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/baseflag.json!
 
-time: 0.000862 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/memdb.json!
+time: 0.000857 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/memdb.json!
 
-time: 0.001694 :read 7 elem from file /root/groupWork/cube-1.3/proc/main/base_define/msghead.json!
+time: 0.001443 :read 7 elem from file /root/groupWork/cube-1.3/proc/main/base_define/msghead.json!
 
-time: 0.002134 :read 2 elem from file /root/groupWork/cube-1.3/proc/main/base_define/msgrecord.json!
+time: 0.001713 :read 2 elem from file /root/groupWork/cube-1.3/proc/main/base_define/msgrecord.json!
 
-time: 0.002377 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/expandrecord.json!
+time: 0.015207 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/expandrecord.json!
 
-time: 0.002825 :read 10 elem from file /root/groupWork/cube-1.3/proc/main/base_define/base_msg.json!
+time: 0.015879 :read 10 elem from file /root/groupWork/cube-1.3/proc/main/base_define/base_msg.json!
 
-time: 0.003220 :read 8 elem from file /root/groupWork/cube-1.3/proc/main/base_define/return.json!
+time: 0.016487 :read 8 elem from file /root/groupWork/cube-1.3/proc/main/base_define/return.json!
 
-time: 0.003461 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/dispatchrecord.json!
+time: 0.016841 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/dispatchrecord.json!
 
-time: 0.003575 :read 2 elem from file /root/groupWork/cube-1.3/proc/main/base_define/exmoduledefine.json!
+time: 0.017150 :read 2 elem from file /root/groupWork/cube-1.3/proc/main/base_define/exmoduledefine.json!
 
-time: 0.003678 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/sys_conn.json!
+time: 0.017501 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/sys_conn.json!
 
-time: 0.007237 :read 5 elem from file websocket_define.json!
-time: 0.026938 :this machine's local uuid is bad5f91dead22e2249193df8600d4d785bef917ac9a8c11d2bbfe9823e76ed93
+time: 0.032247 :read 5 elem from file websocket_define.json!
+time: 0.081060 :this machine's local uuid is bad5f91dead22e2249193df8600d4d785bef917ac9a8c11d2bbfe9823e76ed93
 
-time: 0.032924 :read 1 policy from router_policy file!
-time: 0.033040 :prepare the router proc
+time: 0.116747 :read 1 policy from router_policy file!
+time: 0.116834 :prepare the router proc
 
-time: 0.040177 :prepare the conn proc
+time: 0.177481 :prepare the conn proc
 
-time: 0.040392 :monitor ex_modulec router_proc started successfully!
+time: 0.177696 :monitor ex_modulec router_proc started successfully!
 
-time: 0.040459 :monitor ex_modulec websocket_channel started successfully!
+time: 0.177722 :monitor ex_modulec websocket_channel started successfully!
 
-time: 0.040489 :monitor ex_modulec echo started successfully!
+time: 0.177869 :monitor ex_modulec echo started successfully!
 
-time: 0.040507 :monitor ex_modulec msg2channel started successfully!
+time: 0.177978 :monitor ex_modulec msg2channel started successfully!
 
-time: 103.940595 :websocket_channel write 204 Data!
-time: 103.940654 :msg2channel read 204 data
-time: 103.942598 :router get proc msg2channel's message 
-time: 103.942652 :new msg match path echo's policy
-time: 103.948085 :router get proc echo's message 
-time: 103.949104 :msg2channel write 430 data
-time: 103.950517 :websocket_channel : Get 430 data from websocekt_channel！
-time: 103.950603 :websocket_channel read 4 Data!
-time: 122.515027 :websocket_channel write 4 Data!
-time: 122.517527 :msg2channel read 4 data
-time: 284.782871 :websocket_channel write 204 Data!
-time: 284.784034 :msg2channel read 204 data
-time: 284.789838 :router get proc msg2channel's message 
-time: 284.789872 :new msg match path echo's policy
-time: 284.795100 :router get proc echo's message 
-time: 284.795834 :msg2channel write 430 data
-time: 284.797548 :websocket_channel : Get 430 data from websocekt_channel！
-time: 284.797739 :websocket_channel read 4 Data!
-time: 319.099037 :websocket_channel write 204 Data!
-time: 319.099037 :msg2channel read 204 data
-time: 319.100798 :router get proc msg2channel's message 
-time: 319.100835 :new msg match path echo's policy
-time: 319.106409 :router get proc echo's message 
-time: 319.106984 :msg2channel write 430 data
-time: 319.111841 :websocket_channel : Get 430 data from websocekt_channel！
-time: 319.111967 :websocket_channel read 4 Data!
-time: 353.649555 :websocket_channel write 212 Data!
-time: 353.650077 :msg2channel read 212 data
-time: 353.654885 :router get proc msg2channel's message 
-time: 353.654925 :new msg match path echo's policy
-time: 353.660084 :router get proc echo's message 
-time: 353.660240 :msg2channel write 438 data
-time: 353.665138 :websocket_channel : Get 438 data from websocekt_channel！
-time: 353.665274 :websocket_channel read 4 Data!
-time: 502.828557 :websocket_channel write 204 Data!
-time: 502.829102 :msg2channel read 204 data
-time: 502.834222 :router get proc msg2channel's message 
-time: 502.834316 :new msg match path echo's policy
-time: 502.840005 :router get proc echo's message 
-time: 502.840636 :msg2channel write 430 data
-time: 502.842945 :websocket_channel : Get 430 data from websocekt_channel！
-time: 502.843089 :websocket_channel read 4 Data!
-time: 580.676228 :websocket_channel write 204 Data!
-time: 580.677047 :msg2channel read 204 data
-time: 580.681630 :router get proc msg2channel's message 
-time: 580.681703 :new msg match path echo's policy
-time: 580.687160 :router get proc echo's message 
-time: 580.688170 :msg2channel write 430 data
-time: 580.691189 :websocket_channel : Get 430 data from websocekt_channel！
-time: 580.691298 :websocket_channel read 4 Data!
-time: 622.660770 :websocket_channel write 204 Data!
-time: 622.660833 :msg2channel read 204 data
-time: 622.662777 :router get proc msg2channel's message 
-time: 622.662829 :new msg match path echo's policy
-time: 622.668036 :router get proc echo's message 
-time: 622.668826 :msg2channel write 430 data
-time: 622.673418 :websocket_channel : Get 430 data from websocekt_channel！
-time: 622.673556 :websocket_channel read 4 Data!
-time: 629.090614 :websocket_channel write 204 Data!
-time: 629.090614 :websocket_channel write 204 Data!
-time: 629.093396 :router get proc msg2channel's message 
-time: 629.093441 :new msg match path echo's policy
-time: 629.099102 :router get proc echo's message 
-time: 629.100129 :msg2channel write 430 data
-time: 629.105210 :websocket_channel : Get 430 data from websocekt_channel！
-time: 629.105304 :websocket_channel read 4 Data!
-time: 1009.206126 :websocket_channel write 204 Data!
-time: 1009.207133 :msg2channel read 204 data
-time: 1009.210940 :router get proc msg2channel's message 
-time: 1009.211019 :new msg match path echo's policy
-time: 1009.216494 :router get proc echo's message 
-time: 1009.217582 :msg2channel write 430 data
-time: 1009.222004 :websocket_channel : Get 430 data from websocekt_channel！
-time: 1009.222162 :websocket_channel read 4 Data!
-time: 1046.802408 :websocket_channel write 204 Data!
-time: 1046.802466 :msg2channel read 204 data
-time: 1046.805339 :router get proc msg2channel's message 
-time: 1046.805370 :new msg match path echo's policy
-time: 1046.810544 :router get proc echo's message 
-time: 1046.811677 :msg2channel write 430 data
-time: 1046.813409 :websocket_channel : Get 430 data from websocekt_channel！
-time: 1046.813496 :websocket_channel read 4 Data!
-time: 1096.834837 :websocket_channel write 210 Data!
-time: 1096.835782 :msg2channel read 210 data
-time: 1096.840293 :router get proc msg2channel's message 
-time: 1096.840337 :new msg match path echo's policy
-time: 1096.845942 :router get proc echo's message 
-time: 1096.847047 :msg2channel write 436 data
-time: 1096.850916 :websocket_channel : Get 436 data from websocekt_channel！
-time: 1096.851062 :websocket_channel read 4 Data!
+time: 70.924836 :websocket_channel write 218 Data!
+time: 70.924927 :msg2channel read 218 data
+time: 70.928175 :router get proc msg2channel's message 
+time: 70.928275 :new msg match path echo's policy
+time: 70.935997 :router get proc echo's message 
+time: 70.939750 :websocket_channel : Get 436 data from websocekt_channel！
+time: 70.939868 :websocket_channel read 4 Data!
+time: 70.939868 :msg2channel write 436 data
+time: 234.376631 :websocket_channel write 218 Data!
+time: 234.377080 :msg2channel read 218 data
+time: 234.380650 :router get proc msg2channel's message 
+time: 234.380698 :new msg match path echo's policy
+time: 234.388099 :router get proc echo's message 
+time: 234.388350 :msg2channel write 436 data
+time: 234.397057 :websocket_channel : Get 436 data from websocekt_channel！
+time: 234.397180 :websocket_channel read 4 Data!
+time: 245.042290 :websocket_channel write 186 Data!
+time: 245.043554 :msg2channel read 186 data
+time: 245.045941 :router get proc msg2channel's message 
+time: 245.046001 :new msg match path echo's policy
+time: 245.051254 :router get proc echo's message 
+time: 245.051946 :msg2channel write 412 data
+time: 245.056232 :websocket_channel : Get 412 data from websocekt_channel！
+time: 245.056313 :websocket_channel read 4 Data!
+time: 249.471326 :websocket_channel write 193 Data!
+time: 249.472030 :msg2channel read 193 data
+time: 249.476855 :router get proc msg2channel's message 
+time: 249.476899 :new msg match path echo's policy
+time: 249.482224 :router get proc echo's message 
+time: 249.483111 :msg2channel write 419 data
+time: 249.483799 :websocket_channel : Get 419 data from websocekt_channel！
+time: 249.483895 :websocket_channel read 4 Data!
+time: 262.215506 :msg2channel read 206 data
+6 Data!
+time: 262.215506 :msg2channel read 206 data
+time: 262.215843 :router get proc msg2channel's message 
+time: 262.215873 :new msg match path echo's policy
+time: 262.226788 :router get proc echo's message 
+time: 262.226975 :msg2channel write 432 data
+time: 262.232007 :websocket_channel : Get 432 data from websocekt_channel！
+time: 262.232100 :websocket_channel read 4 Data!
+time: 453.958654 :websocket_channel write 4 Data!
+time: 453.959297 :msg2channel read 4 data
+time: 453.965210 :websocket_channel  data
+time: 453.965210 :websocket_channel  data
+time: 619.823033 :websocket_channel write 2 Data!
+time: 619.824187 :msg2channel read 2 data
+time: 691.018109 :websocket_channel write 183 Data!
+time: 691.018947 :msg2channel read 183 data
+time: 691.023977 :router get proc msg2channel's message 
+time: 691.024115 :new msg match path echo's policy
+time: 691.029749 :router get proc echo's message 
+time: 691.030461 :msg2channel write 409 data
+time: 691.034958 :websocket_channel : Get 409 data from websocekt_channel！
+time: 691.035103 :websocket_channel read 4 Data!
+time: 696.443580 :websocket_channel write 183 Data!
+time: 696.444907 :msg2channel read 183 data
+time: 696.445321 :router get proc msg2channel's message 
+time: 696.445356 :new msg match path echo's policy
+time: 696.450555 :router get proc echo's message 
+time: 696.450846 :msg2channel write 409 data
+time: 696.454460 :websocket_channel : Get 409 data from websocekt_channel！
+time: 696.454558 :websocket_channel read 4 Data!
+time: 697.139929 :websocket_channel write 193 Data!
+time: 697.140627 :msg2channel read 193 data
+time: 697.145761 :router get proc msg2channel's message 
+time: 697.145873 :new msg match path echo's policy
+time: 697.151434 :router get proc echo's message 
+time: 697.152315 :msg2channel write 419 data
+time: 697.154886 :websocket_channel : Get 419 data from websocekt_channel！
+time: 697.155012 :websocket_channel read 4 Data!
+time: 698.646525 :msg2channel read 193 data
+3 Data!
+time: 698.646525 :msg2channel read 193 data
+time: 698.650537 :router get proc msg2channel's message 
+time: 698.650587 :new msg match path echo's policy
+time: 698.655759 :router get proc echo's message 
+time: 698.656427 :msg2channel write 419 data
+time: 698.661550 :websocket_channel : Get 419 data from websocekt_channel！
+time: 698.661646 :websocket_channel read 4 Data!
+time: 705.436142 :websocket_channel write 207 Data!
+time: 705.436768 :msg2channel read 207 data
+time: 705.438561 :router get proc msg2channel's message 
+time: 705.438644 :new msg match path echo's policy
+time: 705.443961 :router get proc echo's message 
+time: 705.444582 :msg2channel write 433 data
+time: 705.447175 :websocket_channel : Get 433 data from websocekt_channel！
+time: 705.447312 :websocket_channel read 4 Data!
+time: 784.288755 :websocket_channel write 2 Data!
+time: 784.289485 :msg2channel read 2 data
+time: 1230.644097 :websocket_channel write 272 Data!
+time: 1230.644603 :msg2channel read 272 data
+time: 1230.649155 :router get proc msg2channel's message 
+time: 1230.649253 :new msg match path echo's policy
+time: 1230.654751 :router get proc echo's message 
+time: 1230.655157 :msg2channel write 498 data
+time: 1230.659083 :websocket_channel : Get 498 data from websocekt_channel！
+time: 1230.659243 :websocket_channel read 4 Data!
+time: 1292.354691 :websocket_channel write 4 Data!
+time: 1292.355129 :msg2channel read 4 data
+time: 1292.355919 :msg2channel read 4 data
+4 Data!
+time: 1292.355919 :msg2channel read 4 data
+time: 1293.410348 :websocket_channel write 2 Data!
+time: 1293.410833 :msg2channel read 2 data
+time: 1297.217535 :msg2channel read 2 data
+2 Data!
+time: 1297.217535 :msg2channel read 2 data
+time: 1320.462405 :websocket_channel write 2 Data!
+time: 1320.462926 :msg2channel read 2 data
+time: 1352.349033 :websocket_channel write 184 Data!
+time: 1352.349279 :msg2channel read 184 data
+time: 1352.352535 :router get proc msg2channel's message 
+time: 1352.352602 :new msg match path echo's policy
+time: 1352.358100 :router get proc echo's message 
+time: 1352.359486 :msg2channel write 410 data
+time: 1352.363442 :websocket_channel : Get 410 data from websocekt_channel！
+time: 1352.363625 :websocket_channel read 4 Data!
+time: 1353.171458 :msg2channel read 193 data
+3 Data!
+time: 1353.171458 :msg2channel read 193 data
+time: 1353.174639 :router get proc msg2channel's message 
+time: 1353.174710 :new msg match path echo's policy
+time: 1353.180256 :router get proc echo's message 
+time: 1353.180979 :msg2channel write 419 data
+time: 1353.182719 :websocket_channel : Get 419 data from websocekt_channel！
+time: 1353.182875 :websocket_channel read 4 Data!
+time: 1361.520400 :websocket_channel write 206 Data!
+time: 1361.520524 :msg2channel read 206 data
+time: 1361.525423 :router get proc msg2channel's message 
+time: 1361.525500 :new msg match path echo's policy
+time: 1361.530852 :router get proc echo's message 
+time: 1361.531167 :msg2channel write 432 data
+time: 1361.531896 :websocket_channel : Get 432 data from websocekt_channel！
+time: 1361.531977 :websocket_channel read 4 Data!
+time: 1580.310096 :websocket_channel write 2 Data!
+time: 1580.311448 :websocket_channel write 2 Data!
+time: 1580.312926 :msg2channel read 4 data
+time: 1860.276581 :websocket_channel write 288 Data!
+time: 1860.277921 :msg2channel read 288 data
+time: 1860.281858 :router get proc msg2channel's message 
+time: 1860.281940 :new msg match path echo's policy
+time: 1860.287972 :router get proc echo's message 
+time: 1860.288609 :msg2channel write 514 data
+time: 1860.288814 :websocket_channel : Get 514 data from websocekt_channel！
+time: 1860.288900 :websocket_channel read 4 Data!
+time: 1951.579235 :websocket_channel write 2 Data!
+time: 1951.582408 :msg2channel read 2 data
+time: 1962.968305 :msg2channel read 299 data
+time: 1962.968305 :msg2channel read 299 data
+9 Data!
+time: 1962.971783 :router get proc msg2channel's message 
+time: 1962.972389 :new msg match path echo's policy
+time: 1962.977723 :router get proc echo's message 
+time: 1962.977872 :msg2channel write 525 data
+time: 1962.982689 :websocket_channel : Get 525 data from websocekt_channel！
+time: 1962.982877 :websocket_channel read 4 Data!
+time: 1970.629108 :websocket_channel write 4 Data!
+time: 1970.629384 :msg2channel read 4 data
+time: 1978.691277 :websocket_channel write 299 Data!
+time: 1978.693786 :msg2channel read 299 data
+time: 1978.699253 :router get proc msg2channel's message 
+time: 1978.699318 :new msg match path echo's policy
+time: 1978.710308 :router get proc echo's message 
+time: 1978.711533 :msg2channel write 525 data
+time: 1978.711963 :websocket_channel : Get 525 data from websocekt_channel！
+time: 1978.712082 :websocket_channel read 4 Data!
+time: 2512.106548 :msg2channel read 2 data
+2 Data!
+time: 2512.106548 :msg2channel read 2 data
+time: 2597.278769 :websocket_channel write 2 Data!
+time: 2597.280775 :msg2channel read 2 data
+time: 2679.132918 :websocket_channel write 279 Data!
+time: 2679.133654 :msg2channel read 279 data
+time: 2679.136586 :router get proc msg2channel's message 
+time: 2679.137747 :new msg match path echo's policy
+time: 2679.143551 :router get proc echo's message 
+time: 2679.144845 :msg2channel write 505 data
+time: 2679.145258 :websocket_channel : Get 505 data from websocekt_channel！
+time: 2679.145393 :websocket_channel read 4 Data!
+time: 2695.668660 :websocket_channel write 4 Data!
+time: 2695.669325 :msg2channel read 4 data
+time: 3189.467339 :websocket_channel write 2 Data!
+time: 3189.467415 :msg2channel read 2 data
+time: 3204.509106 :websocket_channel write 218 Data!
+time: 3204.509584 :msg2channel read 218 data
+time: 3205.516551 :router get proc msg2channel's message 
+time: 3205.516594 :new msg match path echo's policy
+time: 3205.521751 :router get proc echo's message 
+time: 3205.523205 :msg2channel write 436 data
+time: 3205.527596 :websocket_channel : Get 436 data from websocekt_channel！
+time: 3205.527680 :websocket_channel read 4 Data!
+time: 3515.746233 :websocket_channel write 4 Data!
+time: 3515.747313 :msg2channel read 4 data
