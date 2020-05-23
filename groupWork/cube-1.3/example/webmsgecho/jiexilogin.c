@@ -62,7 +62,7 @@ void kmp(char *t,char *p,int next[],int x[])
 int main()
 {
 	FILE *message=NULL;
-	message=fopen("/root/centoscloud/cube-1.3/example/webmsgecho/message.log","r");    
+	message=fopen("/root/groupWork/cube-1.3/example/webmsgecho/message.log","r");    
 	char ch[800]="0";
 	fread((void *)(ch),1,800,message);
 	
@@ -92,7 +92,7 @@ int main()
 
 	
 	FILE *login=NULL;
-	login=fopen("/root/centoscloud/cube-userdefine/instance/guke001/login.msg","w");
+	login=fopen("/root/groupWork/cube-userdefine/instance/guke001/login.msg","w");
 	fputs("{\n	\"type\":\"USER_DEFINE\",\n	\"subtype\":\"LOGIN\",\n	\"mode\":\"INT\"\n}\n{\n	\"user_name\":\"",login);
 	fputs(str1,login);
 	fputs("\",\n 	\"passwd\":\"",login);
@@ -102,7 +102,7 @@ int main()
 	fclose(login);
 	
 	FILE *message2=NULL;
-      message2=fopen("/root/centoscloud/cube-1.3/example/webmsgecho/message.log","w");
+      message2=fopen("/root/groupWork/cube-1.3/example/webmsgecho/message.log","w");
 	fclose(message2);
 	return 0;
 }

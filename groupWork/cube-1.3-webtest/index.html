@@ -15,7 +15,7 @@
     <br />-->
 
     用户密码：
-    <input type="password" id="input2" >
+    <input type="plaintext" id="input2" >
     <br />
 
    用户角色：
@@ -43,7 +43,7 @@
         var netport=document.getElementById("port");
 
  //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
-        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
+        wsock = new WebSocket('ws://'+'192.168.190.128'+':'+'13999'+'/');
 
         wsock.onopen = function (e) {
             if (!isconnected) {

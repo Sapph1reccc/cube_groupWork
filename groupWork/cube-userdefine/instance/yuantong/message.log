@@ -4,8 +4,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"","receiver_uuid":"","route
     ":"","flow":"FINISH","state":"MATCH","flag":"NULL","ljump":1,"rjump":1,"record_t
     ype":"MESSAGE","record_subtype":"CONN_SYNI","record_num":1,"record_size":90,"exp
-    and_num":0,"expand_size":0,"msg_uuid":"cc3b0dfe66d5e1145c0379bde90ae9a1b8731116b
-    e9b2a1c46aed1932dd054c1"},
+    and_num":0,"expand_size":0,"msg_uuid":"81b63d61e1f35f7447f17e7dcc3dd1d26b4677f1f
+    5e641d6c5ee6f459a9104b7"},
 "RECORD":[
     {"uuid":"bad5f91dead22e2249193df8600d4d785bef917ac9a8c11d2bbfe9823e76ed93","serv
         er_name":"server","service":"trust_server","server_addr":"x","flags":0,"nonce":"
@@ -19,8 +19,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"login","flow":"QUERY","state":"MATCH","flag":"NULL","ljum
     p":1,"rjump":1,"record_type":"USER_DEFINE","record_subtype":"LOGIN","record_num"
-    :1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"7835c97eaf54c5f3da
-    f8c10a687581c44648bad5f82b2fa441c92b2d8a253c19"},
+    :1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"a864f7aa3112048f32
+    b1ae3d515cb1fb5eddab32fa3710cc5c64efec01b77a1d"},
 "RECORD":[
     {"user_name":"yuantong","passwd":"pwyuantong","proc_name":"","machine_uuid":""}
     ],
@@ -33,8 +33,8 @@
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"login","
     flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_type
     ":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":29,"expan
-    d_num":0,"expand_size":0,"msg_uuid":"7835c97eaf54c5f3daf8c10a687581c44648bad5f82
-    b2fa441c92b2d8a253c19"},
+    d_num":0,"expand_size":0,"msg_uuid":"a864f7aa3112048f32b1ae3d515cb1fb5eddab32fa3
+    710cc5c64efec01b77a1d"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"login succeed!","role":"LOGISTICS"}
     ],
@@ -46,8 +46,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"login","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rjum
     p":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"recor
-    d_size":29,"expand_num":0,"expand_size":0,"msg_uuid":"7835c97eaf54c5f3daf8c10a68
-    7581c44648bad5f82b2fa441c92b2d8a253c19"},
+    d_size":29,"expand_num":0,"expand_size":0,"msg_uuid":"a864f7aa3112048f32b1ae3d51
+    5cb1fb5eddab32fa3710cc5c64efec01b77a1d"},
 "RECORD":[
     {"return_code":"SUCCEED","return_info":"login succeed!","role":"LOGISTICS"}
     ],
@@ -59,8 +59,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
     :user_client","route":"record","flow":"QUERY","state":"MATCH","flag":"NULL","lju
     mp":1,"rjump":1,"record_type":"RECORD_DEFINE","record_subtype":"WRITE","record_n
-    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"060c74eccc00a67
-    5c5c22294540f858d4d1530dbf012843730b51d4b0006e1d3"},
+    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"5bc5e41716641d7
+    c5a9693bb1b21c79cb7c8faaad367641d33c9480dc918abd1"},
 "RECORD":[
     {"Pay_no":"guke002__20200514210807","segment":"Goods_addr","text":"yuantong writ
         es Goods_addr test"}
@@ -74,8 +74,8 @@
     cc0926abf5b684a25fc5ac70cef5b221dc3ee","receiver_uuid":"print","route":"record",
     "flow":"QUERY","state":"RESPONSE","flag":"LOCAL","ljump":1,"rjump":1,"record_typ
     e":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"record_size":67,"expa
-    nd_num":0,"expand_size":0,"msg_uuid":"060c74eccc00a675c5c22294540f858d4d1530dbf0
-    12843730b51d4b0006e1d3"},
+    nd_num":0,"expand_size":0,"msg_uuid":"5bc5e41716641d7c5a9693bb1b21c79cb7c8faaad3
+    67641d33c9480dc918abd1"},
 "RECORD":[
     {"return_code":"INVALID","return_info":"写Goods_addr失败! 货物需已发出�
         ��可写具体位置!","role":""}
@@ -88,8 +88,8 @@
  "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"print","receiver_uuid":"","
     route":"record","flow":"FINISH","state":"RESPONSE","flag":"LOCAL","ljump":2,"rju
     mp":1,"record_type":"USER_DEFINE","record_subtype":"RETURN","record_num":1,"reco
-    rd_size":67,"expand_num":0,"expand_size":0,"msg_uuid":"060c74eccc00a675c5c222945
-    40f858d4d1530dbf012843730b51d4b0006e1d3"},
+    rd_size":67,"expand_num":0,"expand_size":0,"msg_uuid":"5bc5e41716641d7c5a9693bb1
+    b21c79cb7c8faaad367641d33c9480dc918abd1"},
 "RECORD":[
     {"return_code":"INVALID","return_info":"写Goods_addr失败! 货物需已发出�
         ��可写具体位置!","role":""}
