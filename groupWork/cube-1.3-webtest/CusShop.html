@@ -44,11 +44,8 @@
         <div>
             <h1>付款方信息</h1>
             <label>付款人地址：<input id="paidaddr"type="plaintext" placeholder="付款人地址" size="40"></label>
+            <label>用户名：<input id="username"type="plaintext" placeholder="用户名" size="40"></label>
             <br>
-            <br>
-            <lable>是否收货:<input name="isrece" type="radio" onclick="isRece()" value="true">是
-                <input name="isrece" type="radio" onclick="isRece()" value="false" checked="checked">否</lable>
-            <input type="hidden" id="hide" value="false">
         </div>
     </div>
     <div class="div3">
@@ -85,10 +82,10 @@
 <script type="text/javascript">
     var isconnected=false;
 
+    var input0=document.getElementById('username');
     var input1=document.getElementById('goodsname');
     var input2=document.getElementById('goodsnum');
     var input3=document.getElementById('paidaddr');
-    var input4=document.getElementById('hide');;
     var wsock;
 
     var plainmsg = {"head":"","record":"","expand":""};
@@ -96,7 +93,7 @@
     var jsonstr = JSON.stringify(plainmsg);
 
  //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
-        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
+        wsock = new WebSocket('ws://'+'192.168.190.128'+':'+'13999'+'/');
 
         wsock.onopen = function (e) {
             if (!isconnected) {
@@ -126,15 +123,15 @@
             alert("连接未建立！")
             return;
         }
+        var message0={message:input0.value};
         var message1={message:input1.value};
         var message2={message:input2.value};
         var message3={message:input3.value};
-        var message4={message:input4.value};
         var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        msg.addrecord(message0);
         msg.addrecord(message1);
         msg.addrecord(message2);
         msg.addrecord(message3);
-        msg.addrecord(message4);
         wsock.send(msg.output())
         alert("购买成功，点击个人订单查询详情");
 

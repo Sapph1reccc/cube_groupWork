@@ -92,7 +92,10 @@ int main()
 
 	
 	FILE *login=NULL;
-	login=fopen("/root/groupWork/cube-userdefine/instance/guke001/login.msg","w");
+	char path1[100] = "/root/groupWork/cube-userdefine/instance/";
+	strcat(path1, str1);
+	strcat(path1, "/login.msg");
+	login=fopen(path1, "w");
 	fputs("{\n	\"type\":\"USER_DEFINE\",\n	\"subtype\":\"LOGIN\",\n	\"mode\":\"INT\"\n}\n{\n	\"user_name\":\"",login);
 	fputs(str1,login);
 	fputs("\",\n 	\"passwd\":\"",login);
