@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="styleoflist.css">
+    <link rel="stylesheet" href="styleoflist3.css">
 </head>
 <body>
 <div id="list">
@@ -52,7 +52,8 @@
 </div>
 <div id="kefu">
     <div>
-        <h1>订单号：<input id="info_no" type="text" style="width: 270px; height: 30px;" readonly="readonly" value="testinfo"></h1>
+        <h1>订单号：</h1>
+	  <input id="info_no" type="text" style="width: 270px; height: 30px;" readonly="readonly" value="testinfo">
     </div>
     <div>
         <h2>付款方信息</h2>
@@ -88,6 +89,7 @@
 <script type="text/javascript" src="message.js"></script>
 <script type="text/javascript">
     var isconnected=false;
+    var input0=document.getElementById('info_no');
     var input1=document.getElementById('goodsaddr');
     var wsock;
 
@@ -156,8 +158,10 @@
             alert("连接未建立！")
             return;
         }
+        var message0 = {message:input0.value};
         var message1 = {message:input1.value};
         var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        msg.addrecord(message0);
         msg.addrecord(message1);
         wsock.send(msg.output());
 

@@ -21,6 +21,7 @@
    用户角色：
     <input type="plaintext" id="echo2" />
     <br>
+<button type="button" onclick="mywebsockinit()" id="connect">连接服务器</button>
 <button type="button" onclick="myFunction()" id="sendmsg">登录</button>
 </div>
     </form>
@@ -39,6 +40,11 @@
     plainmsg["head"]={"tag":"MESG","version":65537};
     var jsonstr = JSON.stringify(plainmsg);
 
+    function mywebsockinit() {
+        if (isconnected) {
+            alert("已连接服务器！")
+            return;
+        }
         var netaddr=document.getElementById("addr");
         var netport=document.getElementById("port");
 
@@ -72,7 +78,7 @@
                 }
   //          }
         }
-
+    }
 
     function myFunction() {
         if(!isconnected)
@@ -86,10 +92,8 @@
         var msg = new Cube_msg("MESSAGE","BASE_MSG");
         msg.addrecord(message1);
         msg.addrecord(message2);
-        wsock.send(msg.output());
+        wsock.send(msg.output())
 
-        var s=document.getElementById('input1');
-        location.href='dianzhumsglist.html?'+'txt='+encodeURI(s.value);
 
     };
 </script>

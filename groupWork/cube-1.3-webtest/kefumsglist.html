@@ -67,10 +67,15 @@
     </div>
     <div>
         <h2>货物信息</h2>
-        <lable>是否发货:<input name="issend" type="radio" onclick="issend()" value="true">是
+        <lable>是否发货：<input name="issend" type="radio" onclick="issend()" value="true">是
             <input name="issend" type="radio" onclick="issend()" checked="checked" value="false">否</lable>&nbsp;
         <input type="hidden" id="hide" value="false">
-        <!--<label>物流编号:<input type="text"></label>-->
+        <lable>是否收货：<input type="text" style="width: 40px" value="false" readonly="readonly"></lable>
+        <label>货物地址：<input id="goodsaddr" type="text" size="30" readonly="readonly"></label>
+    </div>
+    <div>
+        <h2>货款情况</h2>
+        <lable>是否收款：<input id="isfinish" type="text" size="7" readonly="readonly"></lable>
     </div>
     <br>
     <div>
