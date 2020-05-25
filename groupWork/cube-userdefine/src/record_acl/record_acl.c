@@ -26,11 +26,6 @@ int record_acl_start(void * sub_proc, void * para)
 	int type;
 	int subtype;
 	// add yorself's module exec func here
-	/*time_t now;
-	struct tm *p;
-	time(&now);
-	p = localtime(&now);
-	printf("\033[44;37;5m%d-%02d-%02d/%02d:%02d:%02d\033[0m\n", 1900+p->tm_year, p->tm_mon+1, p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec);*/
 	while(1)
 	{
 		usleep(time_val.tv_usec);
@@ -258,11 +253,6 @@ int proc_access_read(void * sub_proc,void * recv_msg)
 		ret=ex_module_sendmsg(sub_proc,new_msg);
 		return ret;
 	}
-	if((Strcmp(record_data->Goods_name, "") == 0) && (Strcmp(record_data->Goods_num, "") == 0) && (Strcmp(record_data->Rec_addr, "") == 0) && (Strcmp(record_data->Deli_addr, "") == 0) && (Strcmp(record_data->isSent, "") == 0) && (Strcmp(record_data->isReceived, "") == 0) && (Strcmp(record_data->Goods_addr, "") == 0) && (Strcmp(record_data->isFinished, "") == 0)){
-			printf("\033[43;37;5m!!!\033[0m您所读订单号：%s为空订单号，请查正后再读取!\n", record_data->Pay_no);
-			goto end;
-	}
 	ret=ex_module_sendmsg(sub_proc,recv_msg);
 	return ret;
-	end:;
 }

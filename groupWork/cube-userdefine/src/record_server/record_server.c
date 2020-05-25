@@ -120,7 +120,8 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	strcat(order_no, strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, strcat(second, "__YT")))))));
 	//顾客，由系统分配订单号
 	if(Strncmp(user_name, "guke", 4) == 0){
-		//顾客且非越权写，随机分配订单号写
+		//顾客且非越权写
+		//顾客第一次写，随机分配订单号写
 		if((Strncmp(order_no, user_name, 7) == 0) && (Strcmp(write_data->Pay_no, "") == 0)){
 			printf("\033[40;33;1m<>\033[0m当前写操作用户为顾客：%s，写订单号将随机分配为：\033[44;31;1m%s\033[0m。\n", user_name, order_no);
 			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",order_no);
@@ -130,6 +131,18 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 			FILE *Customer_order_no = fopen(order_no_path, "a");
 			fprintf(Customer_order_no, "%s\n", order_no);
 			fclose(Customer_order_no);
+		}
+		//顾客带订单号来写，读取所要求的合法订单号
+		else if((Strncmp(write_data->Pay_no, user_name, 7) == 0) && (Strcmp(write_data->Pay_no, "") > 0)){
+			if(Strncmp(write_data->Pay_no, "guke", 4) == 0){	//订单号有效
+				printf("顾客自带订单号写: %s\n", write_data->Pay_no);
+				db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",write_data->Pay_no);
+			}
+			else{	//订单号无效
+				return_info->return_code=INVALID;
+				return_info->return_info=dup_str("Customer writes data fail! INVALID PAY_NO!!!", 0);
+				goto write_out;
+			}	
 		}
 		//顾客越权写限制定义
 		else{
@@ -159,7 +172,7 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	if(db_record==NULL)
 	{
 		record_data=Talloc0(sizeof(*record_data));
-		if(Strncmp(user_name, "guke", 4) == 0)
+		if((Strncmp(user_name, "guke", 4) == 0) && (Strcmp(write_data->Pay_no, "") <= 0))
 			record_data->Pay_no = dup_str(order_no,0);
 		else
 			record_data->Pay_no = dup_str(write_data->Pay_no,0);
@@ -184,24 +197,39 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	int isSent_isReceived_flag = 0;
 	int isSent_goodsAddr_flag = 0;
 	int isReceived_isFinished_flag = 0;
+
+	int goodsName_deliAddr_flag = 0;
+	int goodsNum_deliAddr_flag = 0;
+	int recAddr_deliAddr_flag = 0;
 	if(Strcmp(write_data->segment,"Goods_name")==0){
 		record_data->Goods_name= dup_str(write_data->text,256);
+		goodsName_deliAddr_flag = 1;
 	}
 	else if(Strcmp(write_data->segment,"Goods_num")==0){
 		record_data->Goods_num= dup_str(write_data->text,256);
+		goodsNum_deliAddr_flag = 1;
 	}
 	else if(Strcmp(write_data->segment,"Rec_addr")==0){
 		record_data->Rec_addr= dup_str(write_data->text,256);
+		recAddr_deliAddr_flag = 1;
 	}
 	else if(Strcmp(write_data->segment,"Deli_addr")==0){
-		record_data->Deli_addr= dup_str(write_data->text,256);
-		deliAddr_isSent_flag = 1;
+		if((goodsName_deliAddr_flag == 1) && (goodsNum_deliAddr_flag == 1) && (recAddr_deliAddr_flag == 1)){
+			record_data->isSent= dup_str("",256);
+			return_info->return_code=INVALID;
+			return_info->return_info=dup_str("写Deli_addr失败! 需要先完成订单所有基本信息填写!",0);
+			goto write_out;
+		}
+		else{
+			record_data->Deli_addr= dup_str(write_data->text,256);
+			deliAddr_isSent_flag = 1;
+		}
 	}
 	else if(Strcmp(write_data->segment,"isSent")==0){
 		if(deliAddr_isSent_flag != 1){
 			record_data->isSent= dup_str("",256);
 			return_info->return_code=INVALID;
-			return_info->return_info=dup_str("写isSent失败! 需要先写收发或地址!",0);
+			return_info->return_info=dup_str("写isSent失败! 需要先写收发货地址!",0);
 			goto write_out;
 		}
 		else{
@@ -309,19 +337,11 @@ int proc_record_read(void * sub_proc,void * recv_msg)
 	db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",read_data->Pay_no);
 	if(db_record==NULL)
 	{
-		record_data=Talloc0(sizeof(*record_data));
-		record_data->Pay_no = dup_str(read_data->Pay_no,0);
-		record_data->Goods_name=NULL;
-		record_data->Goods_num=NULL;
-		record_data->Rec_addr=NULL;
-		record_data->Deli_addr=NULL;
-		record_data->isSent=NULL;
-		record_data->isReceived=NULL;
-		record_data->Goods_addr=NULL;
-		record_data->isFinished=NULL;
+	//	record_data=Talloc0(sizeof(*record_data));
+		printf("\033[43;37;5m!!!\033[0m无订单号为\"%s\"的订单，请查正后再读!\n", read_data->Pay_no);
+		goto end;
 	}
-	else
-	{
+	else{
 		record_data=db_record->record;
 	}
 
@@ -339,4 +359,5 @@ int proc_record_read(void * sub_proc,void * recv_msg)
 	
 	ret=ex_module_sendmsg(sub_proc,new_msg);
 	return ret;
+	end:;
 }
