@@ -6,5 +6,5 @@
 {
 	"Pay_no":"guke001__20200514210808",
 	"segment":"Deli_addr",
-	"text":"客服写发货地测试"
+	"text":"KEFU writes DELI_ADDR"
 }

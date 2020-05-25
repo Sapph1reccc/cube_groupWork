@@ -5,6 +5,6 @@
 }
 {
 	"Pay_no":"guke001__20200514210808",
-	"segment":"Goods_name",
-	"text":"顾客001写货物名称测试"
+	"segment":"Goods_num",
+	"text":"GUKE001 writes NUMBER"
 }

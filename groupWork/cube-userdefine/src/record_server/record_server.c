@@ -193,82 +193,66 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	ret = struct_write_elem_text(write_data->segment,record_data,write_data->text,record_template);
 	if(ret<0)
 		return -EINVAL;
-	int deliAddr_isSent_flag = 0;
-	int isSent_isReceived_flag = 0;
-	int isSent_goodsAddr_flag = 0;
-	int isReceived_isFinished_flag = 0;
 
-	int goodsName_deliAddr_flag = 0;
-	int goodsNum_deliAddr_flag = 0;
-	int recAddr_deliAddr_flag = 0;
 	if(Strcmp(write_data->segment,"Goods_name")==0){
 		record_data->Goods_name= dup_str(write_data->text,256);
-		goodsName_deliAddr_flag = 1;
 	}
 	else if(Strcmp(write_data->segment,"Goods_num")==0){
 		record_data->Goods_num= dup_str(write_data->text,256);
-		goodsNum_deliAddr_flag = 1;
 	}
 	else if(Strcmp(write_data->segment,"Rec_addr")==0){
 		record_data->Rec_addr= dup_str(write_data->text,256);
-		recAddr_deliAddr_flag = 1;
 	}
 	else if(Strcmp(write_data->segment,"Deli_addr")==0){
-		if((goodsName_deliAddr_flag == 1) && (goodsNum_deliAddr_flag == 1) && (recAddr_deliAddr_flag == 1)){
-			record_data->isSent= dup_str("",256);
+		if((Strcmp(record_data->Goods_name, "") > 0) && (Strcmp(record_data->Goods_num, "") > 0) && (Strcmp(record_data->Rec_addr, "") > 0))
+			record_data->Deli_addr= dup_str(write_data->text,256);
+		else{
+			record_data->Deli_addr= dup_str("",256);
 			return_info->return_code=INVALID;
 			return_info->return_info=dup_str("写Deli_addr失败! 需要先完成订单所有基本信息填写!",0);
 			goto write_out;
 		}
-		else{
-			record_data->Deli_addr= dup_str(write_data->text,256);
-			deliAddr_isSent_flag = 1;
-		}
 	}
 	else if(Strcmp(write_data->segment,"isSent")==0){
-		if(deliAddr_isSent_flag != 1){
+		if((Strcmp(record_data->Rec_addr, "") > 0) && (Strcmp(record_data->Deli_addr, "") > 0))
+			record_data->isSent= dup_str(write_data->text,256);
+		else{
 			record_data->isSent= dup_str("",256);
 			return_info->return_code=INVALID;
 			return_info->return_info=dup_str("写isSent失败! 需要先写收发货地址!",0);
 			goto write_out;
 		}
-		else{
-			isSent_isReceived_flag = 1;
-			isSent_goodsAddr_flag = 1;
-			record_data->isSent= dup_str(write_data->text,256);
-		}
 	}
 	else if(Strcmp(write_data->segment,"isReceived")==0){
-		if(isSent_isReceived_flag != 1){
+		if(Strcmp(record_data->isSent, "true") == 0)
+			record_data->isReceived= dup_str(write_data->text,256);
+		else{
 			record_data->isReceived= dup_str("",256);
 			return_info->return_code=INVALID;
 			return_info->return_info=dup_str("写isReceived失败! 订单需已发出才是否收货!",0);
 			goto write_out;
 		}
-		else{
-			isReceived_isFinished_flag = 1;
-			record_data->isReceived= dup_str(write_data->text,256);
-		}
 	}
 	else if(Strcmp(write_data->segment,"Goods_addr")==0){
-		if(isSent_goodsAddr_flag != 1){
+		if(Strcmp(record_data->isSent, "true") == 0)
+			record_data->Goods_addr= dup_str(write_data->text,256);
+		else{
 			record_data->Goods_addr= dup_str("",256);
 			return_info->return_code=INVALID;
-			return_info->return_info=dup_str("写Goods_addr失败! 货物需已发出才可写具体位置!",0);
+			return_info->return_info=dup_str("写Goods_addr失败! 货物需已发出才可写途中具体位置!",0);
 			goto write_out;
 		}
-		else
-			record_data->Goods_addr= dup_str(write_data->text,256);
+			
 	}
 	else if(Strcmp(write_data->segment,"isFinished")==0){
-		if(isReceived_isFinished_flag != 1){
+		if(Strcmp(record_data->isReceived, "true") == 0)
+			record_data->isFinished= dup_str(write_data->text,256);	
+		else{
 			record_data->isFinished= dup_str("",256);
 			return_info->return_code=INVALID;
 			return_info->return_info=dup_str("写isFinished失败! 需要顾客确认送达后才可结束订单!",0);
 			goto write_out;
 		}
-		else
-		record_data->isFinished= dup_str(write_data->text,256);	
 	}
 	memdb_store(record_data,TYPE_PAIR(RECORD_DEFINE,RECORD),NULL);
 	return_info->return_code=SUCCEED;
@@ -311,26 +295,6 @@ int proc_record_read(void * sub_proc,void * recv_msg)
 		return ret;
 // find the user state, 
 	DB_RECORD * db_record;
-/*
-	db_record=memdb_find_first(TYPE_PAIR(USER_DEFINE,SERVER_STATE),"user_name",read_data->user);
-	if(db_record==NULL)
-	{
-		return_info=Talloc0(sizeof(*return_info));
-		if(return_info==NULL)
-			return -ENOMEM;
-		return_info->return_code=NOUSER;
-		return_info->return_info=dup_str("no such user!\n",0);
-		new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);	
-		if(new_msg==NULL)
-			return -EINVAL;
-		ret=message_add_record(new_msg,return_info);
-		if(ret<0)
-			return ret;
-		ret=ex_module_sendmsg(sub_proc,new_msg);
-		return ret;
-	}
- 	user_state=db_record->record;
-*/
 
 	// find the record
 	//读的时候根据read.msg的需求来读，不限制订单号

@@ -6,5 +6,5 @@
 {
 	"Pay_no":"guke001__20200514210808",
 	"segment":"Rec_addr",
-	"text":"顾客001写收货地址"
+	"text":"GUKE001 writes REC_ADDR"
 }

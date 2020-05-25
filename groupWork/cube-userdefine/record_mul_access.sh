@@ -38,13 +38,13 @@ sleep 1
 #/root/groupWork/cube-1.3/example/webmsgecho/jiexiCuswrite	#从cube-1.3-webtest/CusShop.html解析出写内容
 
 sh run_cube.sh exec_def/_user_server.def &
-sh run_cube.sh exec_def/_guke001_client.def login.msg write.msg write1.msg write2.msg read.msg &
+sh run_cube.sh exec_def/_guke001_client.def login.msg write.msg write1.msg write2.msg &
 sleep 4
 sh run_cube.sh exec_def/_kefu_client.def login.msg write.msg read.msg
 #sh run_cube.sh exec_def/_guke002_client.def login.msg write.msg write1.msg read.msg &
 #sleep 4
 #sh run_cube.sh exec_def/_kefu_client.def login.msg write.msg write1.msg read.msg &
 #sleep 4
-#sh run_cube.sh exec_def/_yuantong_client.def login.msg write.msg & #read.msg &
+#sh run_cube.sh exec_def/_yuantong_client.def login.msg write.msg read.msg
 #sleep 4
 #sh run_cube.sh exec_def/_dianzhu_client.def login.msg write.msg write1.msg read.msg
