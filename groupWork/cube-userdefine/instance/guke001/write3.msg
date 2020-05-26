@@ -5,6 +5,6 @@
 }
 {
 	"Pay_no":"guke001__20200526143708__YT",
-	"segment":"Goods_num",
-	"text":"12"
+	"segment":"Rec_addr",
+	"text":"nmsl"
 }
