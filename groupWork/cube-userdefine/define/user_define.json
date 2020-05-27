@@ -58,10 +58,11 @@
 	},
 	"record":
 	{
-		"elem_no":3,
+		"elem_no":4,
 		"elemlist":
 		[
 			"WAIT",
+			"REQUEST",
 			"LOGIN",
 			"ERROR"
 		]
@@ -75,10 +76,11 @@
 	},
 	"record":
 	{
-		"elem_no":5,
+		"elem_no":6,
 		"elemlist":
 		[
 			"SUCCEED",
+			"CHALLENGE",
 			"INVALID",
 			"NOUSER",
 			"AUTHFAIL",
@@ -101,7 +103,7 @@
 			"elem_desc":
 			[
 				{"name":"user_name","type":"ESTRING","size":32},
-				{"name":"passwd","type":"STRING","size":32},
+				{"name":"passwd","type":"BINDATA","size":32},
 				{"name":"proc_name","type":"STRING","size":32},
 				{"name":"machine_uuid","type":"UUID"}
 			]
@@ -124,16 +126,17 @@
 			[
 				{"name":"user_name","type":"ESTRING","size":32},
 				{"name":"curr_state","type":"ENUM","ref_name":"enum_user_state"},
+				{"name":"nonce","type":"BINDATA","size":32},
 				{"name":"user_info","type":"ESTRING","size":512},
 			]
 		}
 		"flag_no":1,
 		"index":
 		[
-        	{
-            	 "flag":"INDEX",
-             	"elemlist":"user_name"
-        	}
+        		{
+            		 "flag":"INDEX",
+             		"elemlist":"user_name"
+        		}
 		]
 	}
 }
@@ -156,7 +159,8 @@
 				{"name":"proc_name","type":"STRING","size":32},
 				{"name":"passwd","type":"ESTRING","size":32},
 				{"name":"role","type":"ENUM","ref_name":"enum_role_type"},
-				{"name":"curr_state","type":"ENUM","ref_name":"enum_login_state"}
+				{"name":"curr_state","type":"ENUM","ref_name":"enum_login_state"},
+				{"name":"nonce","type":"BINDATA","size":32}
 			]
 		}
 		"flag_no":1,
@@ -185,6 +189,7 @@
 			[
 				{"name":"return_code","type":"ENUM","ref_name":"enum_login_state"},
 				{"name":"return_info","type":"ESTRING","size":128},
+				{"name":"nonce","type":"BINDATA","size":32},
 				{"name":"role","type":"ESTRING","size":128}
 			]
 		}

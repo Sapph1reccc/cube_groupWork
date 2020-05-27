@@ -1,4 +1,4 @@
 {
-	"name":"user_server",
-	"libname":"user_server"
+	"name":"login_server",
+	"libname":"login_server"
 }

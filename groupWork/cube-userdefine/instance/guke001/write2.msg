@@ -4,7 +4,7 @@
 	"mode":"INT"
 }
 {
-	"Pay_no":"guke001__20200526143708__YT",
+	"Pay_no":"guke001__20200527153757__YT",
 	"segment":"Goods_num",
 	"text":"12"
 }

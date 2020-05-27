@@ -3,5 +3,5 @@
 }
 {
 	"CUBE_APP_PATH":"/root/groupWork/cube-userdefine",
-	"INSTANCE":"instance/server"
+	"INSTANCE":"instance/server",
 }

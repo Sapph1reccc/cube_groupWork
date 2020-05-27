@@ -20,12 +20,15 @@ enum enum_user_state
 {
 	WAIT=0x01,
 	LOGIN,
+	REQUEST,
+	RESPONSE,
 	ERROR
 };
 
 enum enum_login_state
 {
 	SUCCEED=0x01,
+	CHALLENGE,
 	INVALID,
 	NOUSER,
 	AUTHFAIL,
@@ -34,14 +37,15 @@ enum enum_login_state
 
 typedef struct user_define_login{
 	char * user_name;
-	char passwd[32];
+	BYTE passwd[32];
 	char proc_name[32];
 	BYTE machine_uuid[32];
 }__attribute__((packed)) RECORD(USER_DEFINE,LOGIN);
 
 typedef struct user_define_client_state{
 	char * user_name;
-	UINT32 curr_state;
+	enum enum_user_state curr_state;
+	BYTE nonce[32];
 	char * user_info;
 }__attribute__((packed)) RECORD(USER_DEFINE,CLIENT_STATE);
 
@@ -52,10 +56,12 @@ typedef struct user_define_server_state{
 	char * passwd;
 	enum enum_role_type role;
 	enum enum_login_state curr_state;
+	BYTE nonce[32];
 }__attribute__((packed)) RECORD(USER_DEFINE,SERVER_STATE);
 
 typedef struct user_define_return{
 	UINT32 return_code;
 	char * return_info;
+	BYTE nonce[32];
 	char * role;
 }__attribute__((packed)) RECORD(USER_DEFINE,RETURN);

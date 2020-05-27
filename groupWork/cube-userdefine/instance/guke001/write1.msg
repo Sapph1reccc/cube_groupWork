@@ -5,5 +5,5 @@
 }
 {
 	"segment":"Goods_name",
-	"text":"Cisco network lab routing and switching"
+	"text":"GUKE001 writes GOODS_NAME"
 }

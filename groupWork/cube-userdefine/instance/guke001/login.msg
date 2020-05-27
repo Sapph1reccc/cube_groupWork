@@ -1,9 +1,9 @@
 {
-	"type":"USER_DEFINE",
-	"subtype":"LOGIN",
+	"type":"GENERAL_RETURN",
+	"subtype":"STRING",
 	"mode":"INT"
 }
 {
-	"user_name":"guke001",
- 	"passwd":"pwguke001",
+	"name":"guke001",
+	"return_value":"pwguke001",
 }

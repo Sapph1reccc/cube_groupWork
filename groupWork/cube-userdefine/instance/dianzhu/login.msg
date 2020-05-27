@@ -1,9 +1,9 @@
 {
-	"type":"USER_DEFINE",
-	"subtype":"LOGIN",
+	"type":"GENERAL_RETURN",
+	"subtype":"STRING",
 	"mode":"INT"
 }
 {
-	"user_name":"dianzhu",
-	"passwd":"pwdianzhu",
+	"name":"dianzhu",
+	"return_value":"pwdianzhu",
 }

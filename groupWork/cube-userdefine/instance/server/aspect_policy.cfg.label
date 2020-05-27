@@ -19,7 +19,7 @@
 {
 	"policy_head":
 	{
-		"name":"login",
+		"name":"challenge",
        	"type":"ASPECT",
         "ljump":1,
         "newname":"addr_label",
@@ -38,7 +38,7 @@
 {
 	"policy_head":
 	{
-		"name":"login",
+		"name":"challenge",
        	"type":"ASPECT",
         "ljump":2,
         "newname":"addr_verify",
