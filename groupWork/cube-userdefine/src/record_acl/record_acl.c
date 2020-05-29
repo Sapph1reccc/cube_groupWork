@@ -192,6 +192,20 @@ int proc_access_write(void * sub_proc,void * recv_msg)
 			return ret;
 		}
 	}
+	if(user_label->role==NULL)
+	{
+		printf("NO login.msg!!!\n");
+		// permission denied
+		new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);
+		RECORD(USER_DEFINE,RETURN) * err_return = Talloc0(sizeof(*err_return));
+		if(err_return==NULL)
+			return -ENOMEM;
+		err_return->return_info=dup_str("write permission denied!",0);
+		err_return->return_code=NOACCESS;
+		message_add_record(new_msg,err_return);
+		ret=ex_module_sendmsg(sub_proc,new_msg);
+		return ret;
+	}
 
 	ret=ex_module_sendmsg(sub_proc,recv_msg);
 	return ret;
@@ -234,6 +248,22 @@ int proc_access_read(void * sub_proc,void * recv_msg)
 	//顾客越权读权限定义
 	if((user_label->role==CUSTOMER) && ((Strncmp(record_data->Pay_no, user_label->user_name, 7) < 0) || (Strncmp(record_data->Pay_no, user_label->user_name, 7) > 0))){
 		record_data->Goods_name="You have NO AUTH to READ other customers' order(s)!";
+		record_data->Goods_num="*****";
+		record_data->Rec_addr="*****";
+		record_data->Deli_addr="*****";
+		record_data->isSent="*****";
+		record_data->isReceived="*****";
+		record_data->Goods_addr="*****";
+		record_data->isFinished="*****";
+		new_msg=message_create(TYPE_PAIR(RECORD_DEFINE,RECORD),recv_msg);
+		if(new_msg==NULL)
+			return -EINVAL;
+		message_add_record(new_msg,record_data);
+		ret=ex_module_sendmsg(sub_proc,new_msg);
+		return ret;
+	}
+	if(user_label->role == NULL){
+		record_data->Goods_name="NO LOGIN!!! You can't read any order!";
 		record_data->Goods_num="*****";
 		record_data->Rec_addr="*****";
 		record_data->Deli_addr="*****";
