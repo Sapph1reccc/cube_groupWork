@@ -1,9 +1,0 @@
-{
-	"type":"GENERAL_RETURN",
-	"subtype":"STRING",
-	"mode":"INT"
-}
-{
-	"name":"kefu",
-	"return_value":"pwkefu",
-}

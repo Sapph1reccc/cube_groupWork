@@ -1,9 +1,0 @@
-{
-	"type":"GENERAL_RETURN",
-	"subtype":"STRING",
-	"mode":"INT"
-}
-{
-	"name":"guke001",
-	"return_value":"pwguke001",
-}
