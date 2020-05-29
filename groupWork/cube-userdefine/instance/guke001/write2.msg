@@ -1,0 +1,10 @@
+{
+	"type":"RECORD_DEFINE",
+	"subtype":"WRITE",
+	"mode":"INT"
+}
+{
+	"Pay_no":"guke001__20200529183709__YT=8",
+	"segment":"Goods_num",
+	"text":"42"
+}

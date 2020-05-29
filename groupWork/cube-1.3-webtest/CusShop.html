@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>顾客信息填写界面</title>
+    <link rel="stylesheet" href="styleofCusShop.css">
+</head>
+<body>
+<script>
+    var value1 = "无";
+    var isvalue="否";
+</script>
+<div id="div0">
+<div id="div1">
+    <div class="div4" ><img src="pic/d1.jpg"></div>
+    <div class="div4" ><img src="pic/d2.jpg"></div>
+    <div class="div4" ><img src="pic/d3.jpg"></div>
+    <div class="div4" ><img src="pic/d4.jpg"></div>
+    <div class="div5">
+    <label><input name="book" type="radio" onclick="buyfunc()" checked="checked" value="Intelligent hd video surveillance" >智能高清视频监控</label>
+    <label><input name="book" type="radio" onclick="buyfunc()" value="ADS signal integrity simulation and practice" >ADS信号完整性仿真与实践</label>
+    <label><input name="book" type="radio" onclick="buyfunc()" value="Cisco network lab routing and switching" >思科网络实验室路由交换</label>
+    <label><input name="book" type="radio" onclick="buyfunc()" value="Cyber attacks trace their origins" >网络攻击追踪溯源</label>
+    </div>
+    <br><br>
+    <div class="div4" ><img src="pic/d5.jpg"></div>
+    <div class="div4" ><img src="pic/d6.jpg"></div>
+    <div class="div4" ><img src="pic/d7.jpg"></div>
+    <div class="div4" ><img src="pic/d8.jpg"></div>
+    <div class="div5">
+        <label><input name="book" type="radio" onclick="buyfunc()" value="Computer network" >计算机网络</label>
+        <label><input name="book" type="radio" onclick="buyfunc()" value="Information theory and coding" >信息论与编码</label>
+        <label><input name="book" type="radio" onclick="buyfunc()" value="C language programming" >C语言程序设计</label>
+        <label><input name="book" type="radio" onclick="buyfunc()" value="Digital image processing and application" >数字图像处理与应用</label>
+    </div>
+</div>
+    <br>
+    <div id="Info">
+        <div>
+            <h1>商品信息</h1>
+            <lable>商品名称：<input id="goodsname" type="plaintext" readonly="true" style="width: 250px"></lable>
+            <lable>商品数量：<input id="goodsnum" type="number" min="1" style="width: 50px;text-align: center;"></lable>
+        </div>
+        <div>
+            <h1>付款方信息</h1>
+            <label>付款人地址：<input id="paidaddr"type="plaintext" placeholder="付款人地址" size="40"></label>
+            <label><input id="username"type="hidden" readonly="readonly" size="40"></label>
+            <br>
+        </div>
+    </div>
+    <div class="div3">
+        <input type="submit" onclick="window.open('index.html')" value="              返回            ">
+        <input type="button" onclick="jumpmsglist()" value="              个人订单            ">
+        <input type="button" onclick="myFunction()" value="              购买            ">
+	  <input type="hidden" id="box">
+    </div>
+</div>
+<script>
+    var loc=location.href;
+    var n1=loc.length;
+    var n2=loc.indexOf('=');
+    var txt=decodeURI(loc.substr(n2+1,n1-n2));
+    var box=document.getElementById('box');
+    box.innerHTML=txt;
+    alert(box.innerHTML);
+</script>
+<script>
+    function buyfunc() {
+        var oin=document.getElementById('goodsname');
+        var orad = document.getElementsByName('book');
+        for (var i = 0; i < orad.length; i++) {
+            if (orad[i].checked ==true) {
+                value1 = orad[i].value;
+            }
+        }
+        oin.value=value1;
+    }
+	function jumpmsglist(){
+		var s=document.getElementById('box');
+		location.href='Cusmsglist.html?'+'txt='+encodeURI(s.innerHTML);
+
+
+
+
+	}
+
+    function isRece(){
+        var ora=document.getElementsByName('isrece');
+        for(var i=0;i<ora.length;i++)
+        {
+            if(ora[i].checked==true)
+            {
+                isvalue=ora[i].value;
+            }
+        }
+        document.getElementById('hide').value=isvalue;
+    }
+
+</script>
+<script type="text/javascript" src="message.js"></script>
+<script type="text/javascript">
+    var isconnected=false;
+
+    var input0=document.getElementById('box');
+    var input1=document.getElementById('goodsname');
+    var input2=document.getElementById('goodsnum');
+    var input3=document.getElementById('paidaddr');
+    var wsock;
+
+    var plainmsg = {"head":"","record":"","expand":""};
+    plainmsg["head"]={"tag":"MESG","version":65537};
+    var jsonstr = JSON.stringify(plainmsg);
+
+ //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
+        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'13999'+'/');
+
+        wsock.onopen = function (e) {
+            if (!isconnected) {
+                isconnected = true;
+                alert("连接成功！")
+            }
+            return;
+        };
+        wsock.onclose = function (e) {
+        };
+        wsock.onerror = function (e) {
+        };
+        wsock.onmessage = function (e) {
+            var msg;
+            msg = JSON.parse(e.data);
+  //          if (msg.replace(/(^s*)|(s*$)/g, "").length != 0) {
+   //             alert(msg);
+   //         }
+ //           for (var key in msg.RECORD) {
+                
+  //          }
+        }
+
+    function myFunction(){
+        if(!isconnected)
+        {
+            alert("连接未建立！")
+            return;
+        }
+        var message0={message:input0.innerHTML};
+        var message1={message:input1.value};
+        var message2={message:input2.value};
+        var message3={message:input3.value};
+        var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        msg.addrecord(message0);
+        msg.addrecord(message1);
+        msg.addrecord(message2);
+        msg.addrecord(message3);
+        wsock.send(msg.output())
+        alert("购买成功，点击个人订单查询详情");
+
+    };
+</script>
+</body>
+</html>

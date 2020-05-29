@@ -1,0 +1,9 @@
+{
+	"type":"GENERAL_RETURN",
+	"subtype":"STRING",
+	"mode":"INT"
+}
+{
+	"name":"dianzhu",
+	"return_value":"pwdianzhu",
+}

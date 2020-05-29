@@ -1,0 +1,29 @@
+{
+	"type":"USER_DEFINE",
+	"subtype":"SERVER_STATE"
+}
+{
+	"user_name":"dianzhu",
+	"passwd":"pwdianzhu",
+	"role":"SHOPKEEPER"
+}
+{	
+	"user_name":"kefu",
+	"passwd":"pwkefu",
+	"role":"SUPPORT"
+}
+{
+	"user_name":"guke001",
+	"passwd":"pwguke001",
+	"role":"CUSTOMER"
+}
+{
+	"user_name":"guke002",
+	"passwd":"pwguke002",
+	"role":"CUSTOMER"
+}
+{
+	"user_name":"yuantong",
+	"passwd":"pwyuantong",
+	"role":"LOGISTICS"
+}

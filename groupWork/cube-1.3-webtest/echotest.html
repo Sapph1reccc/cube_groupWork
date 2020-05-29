@@ -1,0 +1,101 @@
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="styleofindex.css">
+</head>
+<body>
+<form>
+<div>
+    用户名称：
+    <input type="plaintext" id="input1" />
+    <br />
+<!--   输出用户名：
+    <input type="plaintext" id="echo1" />
+    <br />-->
+
+    用户密码：
+    <input type="password" id="input2" >
+    <br />
+
+   用户角色：
+    <input type="plaintext" id="echo2" />
+    <br>
+<button type="button" onclick="mywebsockinit()" id="connect">连接服务器</button>
+<button type="button" onclick="myFunction()" id="sendmsg">登录</button>
+</div>
+    </form>
+    <script type="text/javascript" src="message.js"></script>
+    <script type="text/javascript">
+//    var type_list={MESSAGE:{},LOGIN:{}};
+//    type_list["LOGIN"]={LOGIN_INFO:{},RETURN:{}};
+
+    var isconnected = false;
+    var input1 = document.getElementById("input1");
+    var input2 = document.getElementById("input2");
+    var echo2 = document.getElementById("echo2");
+    var wsock;
+
+    var plainmsg = {"head":"","record":"","expand":""};
+    plainmsg["head"]={"tag":"MESG","version":65537};
+    var jsonstr = JSON.stringify(plainmsg);
+
+    function mywebsockinit() {
+        if (isconnected) {
+            alert("已连接服务器！")
+            return;
+        }
+        var netaddr=document.getElementById("addr");
+        var netport=document.getElementById("port");
+
+ //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
+        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
+
+        wsock.onopen = function (e) {
+            if (!isconnected) {
+                isconnected = true;
+                alert("连接成功！")
+            }
+            return;
+        };
+        wsock.onclose = function (e) {
+        };
+        wsock.onerror = function (e) {
+        };
+        wsock.onmessage = function (e) {
+            var msg;
+            msg = JSON.parse(e.data);
+  //          if (msg.replace(/(^s*)|(s*$)/g, "").length != 0) {
+   //             alert(msg);
+   //         }
+ //           for (var key in msg.RECORD) {
+                if (msg.RECORD[0].message != null) {
+                    document.getElementById("echo2").value += msg.RECORD[1].message;
+                    document.getElementById("echo2").value += '\n';
+                    if(document.getElementById("echo2").value=='123')alert('123123');
+
+
+                }
+  //          }
+        }
+    }
+
+    function myFunction() {
+        if(!isconnected)
+        {
+            alert("连接未建立！")
+            return;
+        }
+
+        var message1 = {message:input1.value};
+        var message2 = {message:input2.value};
+        var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        msg.addrecord(message1);
+        msg.addrecord(message2);
+        wsock.send(msg.output())
+
+
+    };
+</script>
+</body>
+</html>

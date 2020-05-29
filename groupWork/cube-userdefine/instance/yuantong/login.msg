@@ -1,0 +1,9 @@
+{
+	"type":"GENERAL_RETURN",
+	"subtype":"STRING",
+	"mode":"INT"
+}
+{
+	"name":"yuantong",
+	"return_value":"pwyuantong",
+}
