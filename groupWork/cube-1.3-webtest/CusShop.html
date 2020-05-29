@@ -44,16 +44,26 @@
         <div>
             <h1>付款方信息</h1>
             <label>付款人地址：<input id="paidaddr"type="plaintext" placeholder="付款人地址" size="40"></label>
-            <label>用户名：<input id="username"type="plaintext" placeholder="用户名" size="40"></label>
+            <label><input id="username"type="hidden" readonly="readonly" size="40"></label>
             <br>
         </div>
     </div>
     <div class="div3">
         <input type="submit" onclick="window.open('index.html')" value="              返回            ">
-        <input type="button" value="              个人订单            ">
+        <input type="button" onclick="jumpmsglist()" value="              个人订单            ">
         <input type="button" onclick="myFunction()" value="              购买            ">
+	  <input type="hidden" id="box">
     </div>
 </div>
+<script>
+    var loc=location.href;
+    var n1=loc.length;
+    var n2=loc.indexOf('=');
+    var txt=decodeURI(loc.substr(n2+1,n1-n2));
+    var box=document.getElementById('box');
+    box.innerHTML=txt;
+    alert(box.innerHTML);
+</script>
 <script>
     function buyfunc() {
         var oin=document.getElementById('goodsname');
@@ -65,6 +75,15 @@
         }
         oin.value=value1;
     }
+	function jumpmsglist(){
+		var s=document.getElementById('box');
+		location.href='Cusmsglist.html?'+'txt='+encodeURI(s.innerHTML);
+
+
+
+
+	}
+
     function isRece(){
         var ora=document.getElementsByName('isrece');
         for(var i=0;i<ora.length;i++)
@@ -82,7 +101,7 @@
 <script type="text/javascript">
     var isconnected=false;
 
-    var input0=document.getElementById('username');
+    var input0=document.getElementById('box');
     var input1=document.getElementById('goodsname');
     var input2=document.getElementById('goodsnum');
     var input3=document.getElementById('paidaddr');
@@ -93,7 +112,7 @@
     var jsonstr = JSON.stringify(plainmsg);
 
  //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
-        wsock = new WebSocket('ws://'+'192.168.190.128'+':'+'13999'+'/');
+        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'13999'+'/');
 
         wsock.onopen = function (e) {
             if (!isconnected) {
@@ -123,7 +142,7 @@
             alert("连接未建立！")
             return;
         }
-        var message0={message:input0.value};
+        var message0={message:input0.innerHTML};
         var message1={message:input1.value};
         var message2={message:input2.value};
         var message3={message:input3.value};

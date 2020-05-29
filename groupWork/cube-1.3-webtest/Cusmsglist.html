@@ -46,7 +46,8 @@
     </table>
     <br><br><br>
     <div>
-        <input type="button"  value="刷新" onclick="sendrole()" style="width: 100px">
+        <input type="button"  value="刷新" onclick="sendrole()" style="width: 100px">	
+	<input type="hidden" id="box">
         <input type="submit" onclick="window.open('index.html')" value="返回"  style="width: 100px">
     </div>
 </div>
@@ -63,11 +64,7 @@
     </div>
     <div>
         <h2>发货方信息</h2>
-<<<<<<< HEAD
         <label>发货人地址：<input id="sendaddr" type="text" placeholder="发货人地址" size="40" readonly="readonly"></label>
-=======
-        <label>发货人地址：<input id="sendaddr" type="text" placeholder="发货人地址" size="40"></label>
->>>>>>> 7f8fc4800e9d60ecbecaffcc0fc2e1f5c9866b9c
     </div>
     <div>
         <h2>货物信息</h2>
@@ -115,11 +112,7 @@
     }
 
     //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
-<<<<<<< HEAD
-    wsock = new WebSocket('ws://'+'192.168.190.128'+':'+'13999'+'/');
-=======
-    wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
->>>>>>> 7f8fc4800e9d60ecbecaffcc0fc2e1f5c9866b9c
+    wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'13999'+'/');
 
     wsock.onopen = function (e) {
         if (!isconnected) {
@@ -144,6 +137,13 @@
     }
 
     function sendrole(){
+    	var loc=location.href;
+    	var n1=loc.length;
+    	var n2=loc.indexOf('=');
+   	 var txt=decodeURI(loc.substr(n2+1,n1-n2));
+   	 var box=document.getElementById('box');
+   	 box.innerHTML=txt;
+   	 alert(box.innerHTML);
         var atxt=document.getElementsByClassName('t1');
         var abtn=document.getElementsByClassName('t2');
         for(var i=0;i<atxt.length;i++)
@@ -153,7 +153,7 @@
                 abtn[i].disabled=true;
             }
         }
-        var message1={message:"guke"};
+        var message1={message:box.innerHTML};
         var msg = new Cube_msg("MESSAGE","BASE_MSG");
         msg.addrecord(message1);
         wsock.send(msg.output())
