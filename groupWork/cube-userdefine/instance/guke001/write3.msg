@@ -4,7 +4,7 @@
 	"mode":"INT"
 }
 {
-	"Pay_no":"guke001__20200529183709__YT=8",
+	"Pay_no":"guke001__20200601152637__YT",
 	"segment":"Rec_addr",
-	"text":"falsdkfj;asd;fjak;dsfjl;asdkjf"
+	"text":"safsdsdafadsfasdfasdfs"
 }

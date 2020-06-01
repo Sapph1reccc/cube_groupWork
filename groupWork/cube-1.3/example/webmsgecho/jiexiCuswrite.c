@@ -63,14 +63,12 @@ int main()
 	char b[]="message";
 	int len=strlen(b);
     int *next;
-    int x[4];
+    int x[2];
     next=(int*)malloc(sizeof(int)*len);
     getNext(b,next);
     kmp(ch,b,next,x);/*≤‚ ‘kmpÀ„∑®*/
 	char str0[10]="";
     char str1[50]="";
-    char str2[3]="";
-    char str3[20]="";
 	
 	int i0,j0=0;
     for(i0=x[0]+10;ch[i0]!=0x22;i0++)
@@ -85,21 +83,6 @@ int main()
     	str1[j]=ch[i];
     	j++;
 	}
-	
-	int k,l=0;
-	for(k=x[2]+10;ch[k]!=0x22;k++)
-    {
-    	str2[l]=ch[k];
-    	l++;
-	}
-	
-	int i1,j1=0;
-    for(i1=x[3]+10;ch[i1]!=0x22;i1++)
-    {
-    	str3[j1]=ch[i1];
-    	j1++;
-	}
-
 	char path1[100] = "/root/groupWork/cube-userdefine/instance/";
 	strcat(path1, str0);
 	strcat(path1, "/write1.msg");
@@ -108,27 +91,6 @@ int main()
 	fputs(str1,write1);
 	fputs("\"\n}",write1);
 	fclose(write1);
-	
-	char path2[100] = "/root/groupWork/cube-userdefine/instance/";
-	strcat(path2, str0);
-	strcat(path2, "/write2.msg");
-	FILE *write2 = fopen(path2, "w+");
-	fputs("{\n	\"type\":\"RECORD_DEFINE\",\n	\"subtype\":\"WRITE\",\n	\"mode\":\"INT\"\n}\n{\n	\"segment\":\"Goods_num\",\n	\"text\":\"",write2);
-	fputs(str2,write2);
-	fputs("\"\n}",write2);
-	fclose(write2);
-	
-	char path3[100] = "/root/groupWork/cube-userdefine/instance/";
-	strcat(path3, str0);
-	strcat(path3, "/write3.msg");
-	FILE *write3 = fopen(path3, "w+");
-	fputs("{\n	\"type\":\"RECORD_DEFINE\",\n	\"subtype\":\"WRITE\",\n	\"mode\":\"INT\"\n}\n{\n	\"segment\":\"Rec_addr\",\n	\"text\":\"",write3);
-	fputs(str3,write3);
-	fputs("\"\n}",write3);
-	fclose(write3);
 
-	FILE *message2=NULL;
-      message2=fopen("/root/groupWork/cube-1.3/example/webmsgecho/message.log","w");
-	fclose(message2);
 	return 0;
 }

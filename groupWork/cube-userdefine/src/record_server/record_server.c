@@ -129,7 +129,7 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 			strcat(order_no_path, user_name);
 			strcat(order_no_path, "/ORDER_NO.txt");
 			FILE *Customer_order_no = fopen(order_no_path, "a");
-			fprintf(Customer_order_no, "%s\n", order_no);
+			fprintf(Customer_order_no, "%s\r", order_no);
 			fclose(Customer_order_no);
 		}
 		//顾客带订单号来写，读取所要求的合法订单号

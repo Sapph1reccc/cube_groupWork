@@ -71,34 +71,34 @@ int echo_plugin_start(void * sub_proc,void * para)
 
 int proc_echo_message(void * sub_proc,void * message)
 {
-	int type;
-	int subtype;
+	//int type;
+	//int subtype;
+	void * recv_msg;
 	int i;
 	int ret;
 	printf("begin proc echo \n");
 
-	type=message_get_type(message);
-	subtype=message_get_subtype(message);
+	ex_module_recvmsg(sub_proc,&recv_msg);
 
 	void * new_msg;
 	void * record;
-	new_msg=message_create(type,subtype,message);
-	
+	new_msg=message_create(TYPE_PAIR(MESSAGE,BASE_MSG),recv_msg);
+
+	struct basic_message * msg_info;
+	msg_info=Talloc(sizeof(*msg_info));
+
 	i=0;
 
-	ret=message_get_record(message,&record,i++);
 	if(ret<0)
 		return ret;
-	while(record!=NULL)
-	{
-		message_add_record(new_msg,record);
-		ret=message_get_record(message,&record,i++);
-		if(ret<0)
-			return ret;
-	}
+
+	msg_info->message=dup_str("Hello World!",0);
+	ret=message_add_record(new_msg,msg_info);
+	
+	if(ret<0)
+		return ret;
 
 	ex_module_sendmsg(sub_proc,new_msg);
-
 	return ret;
 }
 

@@ -5,5 +5,5 @@
 }
 {
 	"segment":"Goods_name",
-	"text":"Intelligent hd video surveillance"
+	"text":""
 }

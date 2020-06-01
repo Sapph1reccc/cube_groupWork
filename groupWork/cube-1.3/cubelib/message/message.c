@@ -1792,7 +1792,6 @@ int message_get_record(void * message,void ** msg_record, int record_no)
 			msg_head->record_subtype);
 	if(msg_box->precord[record_no]==NULL)
 	{
-
 		msg_box->precord[record_no]=Dalloc0(struct_size(msg_box->record_template),msg_box);
 		if(msg_box->precord[record_no]==NULL)
 			return -ENOMEM;	

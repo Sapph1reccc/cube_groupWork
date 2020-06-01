@@ -96,9 +96,9 @@ int main()
 	strcat(path1, str1);
 	strcat(path1, "/login.msg");
 	login=fopen(path1, "w");
-	fputs("{\n	\"type\":\"USER_DEFINE\",\n	\"subtype\":\"LOGIN\",\n	\"mode\":\"INT\"\n}\n{\n	\"user_name\":\"",login);
+	fputs("{\n	\"type\":\"GENERAL_RETURN\",\n	\"subtype\":\"STRING\",\n	\"mode\":\"INT\"\n}\n{\n	\"name\":\"",login);
 	fputs(str1,login);
-	fputs("\",\n 	\"passwd\":\"",login);
+	fputs("\",\n 	\"return_value\":\"",login);
 	fputs(str2,login);
 	fputs("\",\n}",login);
 	fclose(message);
