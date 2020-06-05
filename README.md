@@ -31,7 +31,7 @@
 
   2.由于写有问题，读操作暂时未完成；
 
-  3.目前已经将index.html和Cusshop.html开始与cube接入，但Cusshop.html在购买东西（即写操作时出现错误），其他html还没更改消息格式
+  3.目前已经将index.html和CusShop.html开始与cube接入，但CusShop.html在购买东西（即写操作时出现错误），其他html还没更改消息格式
 
 目前主要的问题是路由的配置和消息格式的匹配
 
