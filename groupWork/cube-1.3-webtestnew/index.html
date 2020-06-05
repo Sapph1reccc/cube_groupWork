@@ -18,7 +18,7 @@
     <input type="plaintext" id="input2" >
     <br />
 
-    <input type="hidden" id="echo2" value="Customer" />
+    <input type="hidden" id="echo2" value="" />
     <br>
 <button type="button" onclick="myFunction()" id="sendmsg">登录</button>
 </div>
@@ -27,7 +27,7 @@
     <script type="text/javascript">
 //    var type_list={MESSAGE:{},LOGIN:{}};
 //    type_list["LOGIN"]={LOGIN_INFO:{},RETURN:{}};
-
+    var Role=prompt("请输入您的身份（顾客、客服、店主、物流）","");
     var isconnected = false;
     var input1 = document.getElementById("input1");
     var input2 = document.getElementById("input2");
@@ -40,10 +40,20 @@
 
         var netaddr=document.getElementById("addr");
         var netport=document.getElementById("port");
-
+//wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
  //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
+	if(Role=="顾客"){
         wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'13999'+'/');
-
+}
+	else if(Role=="店主"){
+        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'14999'+'/');	
+}
+	else if(Role=="客服"){
+        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'15999'+'/');
+}
+	else if(Role=="物流"){
+        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'16999'+'/');
+}
         wsock.onopen = function (e) {
             if (!isconnected) {
                 isconnected = true;
@@ -62,13 +72,41 @@
    //             alert(msg);
    //         }
  //           for (var key in msg.RECORD) {
-                if (msg.RECORD[0].message != null) {
-                    document.getElementById("echo2").value += msg.RECORD[1].message;
-                    document.getElementById("echo2").value += '\n';
-                    if(document.getElementById("echo2").value=='123')alert('123123');
+                //if (msg.RECORD[0].message != null) {
+                    //document.getElementById("echo2").value += msg.RECORD[1].message;
+	if((msg.HEAD.record_type=="USER_DEFINE")&&(msg.HEAD.record_subtype=="RETURN")){
+	if(msg.RECORD[0].return_code=="SUCCEED"){
+		alert("登录成功");
+		document.getElementById('echo2').value=msg.RECORD[0].role;
+}
+	else{
+		alert("用户名或密码有误，请核对后再登录");
+		document.getElementById('echo2').value="error";
+	}
+}
 
+	var s=document.getElementById('input1');
+        if(document.getElementById('echo2').value=="CUSTOMER")
+        {
+            location.href='CusShop.html?'+'txt='+encodeURI(s.value);
+        }
+        else if(document.getElementById('echo2').value=="SHOPKEEPER")
+        {
+            location.href='dianzhumsglist.html?'+'txt='+encodeURI(s.value);
+        }
+	else if(document.getElementById('echo2').value=="SUPPORT")
+        {
+            location.href='kefumsglist.html?'+'txt='+encodeURI(s.value);
+        }
+        else if(document.getElementById('echo2').value=="LOGISTICS")
+        {
+            location.href='wuliumsglist.html?'+'txt='+encodeURI(s.value);
+        }
+	else{
+		alert("用户名或密码有误，请核对后再登录");
+} 
 
-                }
+              //  }
   //          }
         }
 
@@ -80,22 +118,12 @@
             return;
         }
 
-        var message1 = {message:input1.value};
-        var message2 = {message:input2.value};
-        var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        var message1 = {"name":input1.value,"return_value":input2.value};
+        var msg = new Cube_msg("GENERAL_RETURN","STRING");
         msg.addrecord(message1);
-        msg.addrecord(message2);
         wsock.send(msg.output());
 
-        var s=document.getElementById('input1');
-        if(document.getElementById('echo2').value=="Customer")
-        {
-            location.href='CusShop.html?'+'txt='+encodeURI(s.value);
-        }
-        else if(document.getElementById('echo2').value=="Shopkeeper")
-        {
-            location.href='dianzhumsglist.html?'+'txt='+encodeURI(s.value);
-        }
+        
     };
 </script>
 </body>

@@ -20,7 +20,7 @@ th{
 }
 #list{
     width:1000px;
-    height: 500px;
+    height: 250px;
     text-align: center;
     border: 1px solid black;
     background-color: bisque;
@@ -34,7 +34,7 @@ body{
 }
 #kefu{
     width:1000px;
-    height: 500px;
+    height: 600px;
     border: 1px solid black;
     background-color: bisque;
     padding: 50px 50px;

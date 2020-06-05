@@ -17,7 +17,6 @@
 #include "ex_module.h"
 #include "sys_func.h"
 #include "user_define.h"
-//#include "user_server.h"	//后加的，为了订单号加上用户名
 #include "record_define.h"
 #include "record_server.h"
 // add para lib_include
@@ -53,6 +52,8 @@ int record_server_start(void * sub_proc, void * para)
 		if((type==TYPE(RECORD_DEFINE))&&(subtype==SUBTYPE(RECORD_DEFINE,WRITE)))
 		{
 			ret=proc_record_write(sub_proc,recv_msg);
+	//		if(ret==MSG_CTRL_EXIT)
+	//			return MSG_CTRL_EXIT;
 		}
 		if((type==TYPE(RECORD_DEFINE))&&(subtype==SUBTYPE(RECORD_DEFINE,READ)))
 		{
@@ -65,17 +66,21 @@ int record_server_start(void * sub_proc, void * para)
 int proc_record_write(void * sub_proc,void * recv_msg)
 {
 	int ret;
+//	int msg_cir = 0;
 	RECORD(RECORD_DEFINE,RECORD) * record_data;
 	RECORD(RECORD_DEFINE,WRITE) * write_data;
 	RECORD(USER_DEFINE,RETURN) * return_info;
 	RECORD(USER_DEFINE,SERVER_STATE) * user_state;
 
 	void * new_msg;
-	
-	ret=message_get_record(recv_msg,&write_data,0);
+	ret=message_get_record(recv_msg,&write_data,0/*msg_cir++*/);
+//	printf("%d\n", msg_cir);
 	if(ret<0)
 		return ret;
-
+/*	if(write_data!=NULL)
+	{
+		ret=write_data->ctrl; 
+	}*/
 	return_info=Talloc0(sizeof(*return_info));
 	if(return_info==NULL)
 		return -ENOMEM;
@@ -94,7 +99,9 @@ int proc_record_write(void * sub_proc,void * recv_msg)
  	user_state=db_record->record;
 */
 //	find the record
-
+	srand((unsigned int)time(0));
+	int logisticsDEF_num = rand() % 2;	//随机分配物流公司
+	char *logDEF[] = {"YT", "SF"};
 	time_t now;
 	struct tm *p;
 	time(&now);
@@ -113,11 +120,11 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 	FILE *name = fopen("./output.txt", "r");
 	fscanf(name, "%s", user_name);
 	truncate("./output.txt", 0);	//清空文件
-//	memset(user_name,'\0',sizeof(user_name));
 	fclose(name);
 	strcpy(order_no, user_name);	//将读出来的名字复制到order_no
 	strcat(order_no, "__");
-	strcat(order_no, strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, strcat(second, "__YT")))))));
+	strcat(order_no, strcat(timeStamp, strcat(month, strcat(date, strcat(hour, strcat(minute, strcat(second, "__")))))));
+	strcat(order_no, logDEF[logisticsDEF_num]);
 	//顾客，由系统分配订单号
 	if(Strncmp(user_name, "guke", 4) == 0){
 		//顾客且非越权写
@@ -131,6 +138,7 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 			FILE *Customer_order_no = fopen(order_no_path, "a");
 			fprintf(Customer_order_no, "%s\r", order_no);
 			fclose(Customer_order_no);
+			return_info->return_Pay_no=dup_str("order_no:xxxxxxx", 0);
 		}
 		//顾客带订单号来写，读取所要求的合法订单号
 		else if((Strncmp(write_data->Pay_no, user_name, 7) == 0) && (Strcmp(write_data->Pay_no, "") > 0)){
@@ -196,6 +204,9 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 
 	if(Strcmp(write_data->segment,"Goods_name")==0){
 		record_data->Goods_name= dup_str(write_data->text,256);
+		record_data->Goods_num= dup_str("",256);	//这三个置空是为了防止乱码
+		record_data->Deli_addr= dup_str("",256);
+		record_data->isSent= dup_str("",256);
 	}
 	else if(Strcmp(write_data->segment,"Goods_num")==0){
 		record_data->Goods_num= dup_str(write_data->text,256);

@@ -112,15 +112,14 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 				fclose(out);
 				return_info->return_code=SUCCEED;
 				return_info->return_info=dup_str("login succeed!",0);
-				
-				/*FILE *role_out = fopen("./role_output.txt", "w+");
-				fprintf(out, "%s", login_info->role);*/
 				return_info->role=dup_str(role_name[user_state->role - 1],0);
+				return_info->return_Pay_no=dup_str("", 0);
 			}
 			else
 			{
 				return_info->return_code=AUTHFAIL;
 				return_info->return_info=dup_str("password error!",0);
+				return_info->return_Pay_no=dup_str("", 0);
 			}
 		}
 	}

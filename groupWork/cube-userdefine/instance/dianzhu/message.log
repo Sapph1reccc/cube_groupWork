@@ -1,28 +1,15 @@
 
 **************Begin new trust node proc****************************
 {
- "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"msg_send","receiver_uuid":"
-    login_user","route":"login","flow":"QUERY","state":"MATCH","flag":"LOCAL","ljump
-    ":1,"rjump":1,"record_type":"GENERAL_RETURN","record_subtype":"STRING","record_n
-    um":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"4d4345dbcda970e
-    e5db5a0b10a32d4f58929d4149eb510a2d5e38ad0c808244c"},
+ "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"","receiver_uuid":"","route
+    ":"","flow":"FINISH","state":"MATCH","flag":"NULL","ljump":1,"rjump":1,"record_t
+    ype":"MESSAGE","record_subtype":"CONN_SYNI","record_num":1,"record_size":90,"exp
+    and_num":0,"expand_size":0,"msg_uuid":"2584a05b6b8f17fe87ae3047121f8aa813ac6b37a
+    30784abdbfcbe65979d3322"},
 "RECORD":[
-    {"name":"dianzhu","return_value":"pwdianzhu"}
-    ],
-"EXPAND" :[]
-}
-
-************************************************************
-{
- "HEAD":{"tag":"MESG","version":65537,"sender_uuid":"login_user","receiver_uuid"
-    :":user_client","route":"login","flow":"QUERY","state":"MATCH","flag":"NULL","lj
-    ump":2,"rjump":1,"record_type":"USER_DEFINE","record_subtype":"LOGIN","record_nu
-    m":1,"record_size":0,"expand_num":0,"expand_size":0,"msg_uuid":"4d4345dbcda970ee
-    5db5a0b10a32d4f58929d4149eb510a2d5e38ad0c808244c"},
-"RECORD":[
-    {"user_name":"dianzhu","passwd":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","p
-        roc_name":"dianzhu","machine_uuid":"bad5f91dead22e2249193df8600d4d785bef917ac9a8
-        c11d2bbfe9823e76ed93"}
+    {"uuid":"bad5f91dead22e2249193df8600d4d785bef917ac9a8c11d2bbfe9823e76ed93","serv
+        er_name":"server","service":"trust_server","server_addr":"x","flags":0,"nonce":"
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}
     ],
 "EXPAND" :[]
 }

@@ -64,4 +64,5 @@ typedef struct user_define_return{
 	char * return_info;
 	BYTE nonce[32];
 	char * role;
+	char * return_Pay_no;
 }__attribute__((packed)) RECORD(USER_DEFINE,RETURN);

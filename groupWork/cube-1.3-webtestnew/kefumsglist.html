@@ -18,36 +18,16 @@
         <tbody>
         <tr>
             <th>1</th>
-            <th><input id="input1" type="text" value="fksdhsjka23231" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input1')"></th>
-        </tr>
-        <tr>
-            <th>2</th>
-            <th><input id="input2" type="text" value="" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input2')"></th>
-        </tr>
-        <tr>
-            <th>3</th>
-            <th><input id="input3" type="text" value="" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input3')"></th>
-        </tr>
-        <tr>
-            <th>4</th>
-            <th><input id="input4" type="text" value="" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input4')"></th>
-        </tr>
-        <tr>
-            <th>5</th>
-            <th><input id="input5" type="text" value="" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input5')"></th>
+            <th><input id="input1" type="text" value="" ></th>
+            <th><input type="button" class="t2" value="查看" onclick="sendvalue('input1')" id="btn1"></th>
         </tr>
         </tbody>
         </thead>
     </table>
     <br><br><br>
     <div>
-        <input type="button"  value="刷新" onclick="sendrole()" style="width: 100px">
-        <input type="submit" onclick="window.open('index.html')" value="返回"  style="width: 100px">
+        <input type="hidden" id="box">
+        <input type="submit" onclick="location.replace('index.html')" value="返回"  style="width: 100px">
     </div>
 </div>
 <div id="kefu">
@@ -79,7 +59,7 @@
     </div>
     <br>
     <div>
-        <input type="button" onclick="myFunction()" value="确认" style="width: 70px; height: 30px;">
+        <input type="button" class="t2" id="sure" onclick="myFunction()" value="确认" style="width: 70px; height: 30px;">
     </div>
 </div>
 <script>
@@ -101,6 +81,7 @@
     var input2 = document.getElementById("sendaddr");
     var input3 = document.getElementById("hide");
     var wsock;
+    var flag=0;
 
     var plainmsg = {"head":"","record":"","expand":""};
     plainmsg["head"]={"tag":"MESG","version":65537};
@@ -111,7 +92,7 @@
         }
 
         //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
-        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
+        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'15999'+'/');
 
         wsock.onopen = function (e) {
             if (!isconnected) {
@@ -120,6 +101,16 @@
             }
             return;
         };
+
+    var loc=location.href;
+    var n1=loc.length;
+    var n2=loc.indexOf('=');
+    var txt=decodeURI(loc.substr(n2+1,n1-n2));
+    var box=document.getElementById('box');
+    box.innerHTML=txt;
+    alert(box.innerHTML);
+    
+    
         wsock.onclose = function (e) {
         };
         wsock.onerror = function (e) {
@@ -133,34 +124,18 @@
             //           for (var key in msg.RECORD) {
 
             //          }
+	
         }
 
-    function sendrole(){
-        var atxt=document.getElementsByClassName('t1');
-        var abtn=document.getElementsByClassName('t2');
-        for(var i=0;i<atxt.length;i++)
-        {
-            if(atxt[i]==null)
-            {
-                abtn[i].disabled=true;
-            }
-        }
-        var message1={message:"kefu"};
-        var msg = new Cube_msg("MESSAGE","BASE_MSG");
-        msg.addrecord(message1);
-        wsock.send(msg.output())
-
-
-
-    }
     function sendvalue(id){
         if(!isconnected)
         {
             alert("连接未建立！")
             return;
         }
-        var message1={message:document.getElementById(id).value};
-        var msg = new Cube_msg("MESSAGE","BASE_MSG");
+	 
+        var message1={"Pay_no":document.getElementById(id).value};
+        var msg = new Cube_msg("RECORD_DEFINE","READ");
         msg.addrecord(message1);
         wsock.send(msg.output())
 

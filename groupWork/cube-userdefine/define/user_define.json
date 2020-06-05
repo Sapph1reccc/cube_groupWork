@@ -190,7 +190,8 @@
 				{"name":"return_code","type":"ENUM","ref_name":"enum_login_state"},
 				{"name":"return_info","type":"ESTRING","size":128},
 				{"name":"nonce","type":"BINDATA","size":32},
-				{"name":"role","type":"ESTRING","size":128}
+				{"name":"role","type":"ESTRING","size":128},
+				{"name":"return_Pay_no","type":"ESTRING","size":128},
 			]
 		}
 	}

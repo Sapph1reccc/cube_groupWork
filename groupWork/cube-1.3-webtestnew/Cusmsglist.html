@@ -3,12 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="styleoflist2.css">
+    <link rel="stylesheet" href="styleoflist.css">
 </head>
 <body>
 <div id="list">
     <h1>订单编号</h1>
-    <input type="hidden" id="box">
     <table>
         <thead>
         <tr>
@@ -19,36 +18,37 @@
         <tbody>
         <tr>
             <th>1</th>
-            <th><input id="input1" type="text" value="fksdhsjka23231" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input1')"></th>
+            <th><input id="input1" type="text" value="" ></th>
+            <th><input type="button" class="t2" value="查看" onclick="sendvalue('input1')" id="btn1"></th>
         </tr>
-        <tr>
+        <!--<tr>
             <th>2</th>
             <th><input id="input2" type="text" value="" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input2')"></th>
+            <th><input type="button" class="t2" value="查看" onclick="sendvalue('input2')" id="btn2"></th>
         </tr>
         <tr>
             <th>3</th>
             <th><input id="input3" type="text" value="" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input3')"></th>
+            <th><input type="button" class="t2" value="查看" onclick="sendvalue('input3')" id="btn3"></th>
         </tr>
         <tr>
             <th>4</th>
             <th><input id="input4" type="text" value="" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input4')"></th>
+            <th><input type="button" class="t2" value="查看" onclick="sendvalue('input4')" id="btn4"></th>
         </tr>
         <tr>
             <th>5</th>
             <th><input id="input5" type="text" value="" readonly="readonly"></th>
-            <th><input type="button" value="查看" onclick="sendvalue('input5')"></th>
-        </tr>
+            <th><input type="button" class="t2" value="查看" onclick="sendvalue('input5')" id="btn5"></th>
+        </tr>-->
         </tbody>
         </thead>
     </table>
     <br><br><br>
     <div>
-        <input type="button"  value="刷新" onclick="sendrole()" style="width: 100px">
-        <input type="submit" onclick="window.open('index.html')" value="返回"  style="width: 100px">
+        <!--<input type="button"  value="刷新" onclick="sendrole()" style="width: 100px">-->	
+	<input type="hidden" id="box">
+        <input type="submit" onclick="location.replace('index.html')" value="返回"  style="width: 100px">
     </div>
 </div>
 <div id="kefu">
@@ -69,33 +69,24 @@
     <div>
         <h2>货物信息</h2>
         <lable>是否发货：<input type="text" style="width: 40px" value="false" readonly="readonly"></lable>
-        <lable>是否收货：<input type="text" style="width: 40px" value="false" readonly="readonly"></lable>
+        <lable>是否收货:<input name="isrece" type="radio" onclick="isRece()" value="true">是
+            <input name="isrece" type="radio" onclick="isRece()" value="false" checked="checked">否</lable>
+        <input type="hidden" id="hide" value="false">
         <label>货物地址：<input id="goodsaddr" type="text" size="30" readonly="readonly"></label>
+        <!--<label>物流编号:<input type="text"></label>-->
     </div>
     <div>
         <h2>货款情况</h2>
-        <lable>是否收款：<input name="isfinish" type="radio" onclick="isfinish()" value="true">是
-            <input name="isfinish" type="radio" onclick="isfinish()" checked="checked" value="false">否</lable>&nbsp;
-        <input type="hidden" id="hide" value="false">
+        <lable>是否收款：<input id="isfinish" type="text" size="7" readonly="readonly"></lable>
     </div>
     <br>
     <div>
-        <input type="button" value="返回" style="width: 70px; height: 30px;">
-        <input type="button" onclick="myFunction()" value="确认" style="width: 70px; height: 30px;">
+        <input type="button" class="t2" id="sure" onclick="myFunction()" value="确认" style="width: 70px; height: 30px;">
     </div>
 </div>
 <script>
-    var loc=location.href;
-    var n1=loc.length;
-    var n2=loc.indexOf('=');
-    var txt=decodeURI(loc.substr(n2+1,n1-n2));
-    var box=document.getElementById('box');
-    box.innerHTML=txt;
-    alert(box.innerHTML);
-</script>
-<script>
-    function isfinish(){
-        var ora=document.getElementsByName('isfinish');
+    function issend(){
+        var ora=document.getElementsByName('isrece');
         for(var i=0;i<ora.length;i++)
         {
             if(ora[i].checked==true)
@@ -111,6 +102,7 @@
     var input1 = document.getElementById("info_no");
     var input2 = document.getElementById("hide");
     var wsock;
+    var flag=0;
 
     var plainmsg = {"head":"","record":"","expand":""};
     plainmsg["head"]={"tag":"MESG","version":65537};
@@ -121,7 +113,7 @@
     }
 
     //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
-    wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'13999'+'/');
+    wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
 
     wsock.onopen = function (e) {
         if (!isconnected) {
@@ -130,6 +122,17 @@
         }
         return;
     };
+
+	var loc=location.href;
+    	var n1=loc.length;
+    	var n2=loc.indexOf('=');
+   	 var txt=decodeURI(loc.substr(n2+1,n1-n2));
+   	 var box=document.getElementById('box');
+   	 box.innerHTML=txt;
+   	 alert(box.innerHTML);
+
+        
+
     wsock.onclose = function (e) {
     };
     wsock.onerror = function (e) {
@@ -143,30 +146,17 @@
         //           for (var key in msg.RECORD) {
 
         //          }
+	
     }
 
-    function sendrole(){
-        if(!isconnected)
-        {
-            alert("连接未建立！")
-            return;
-        }
-        var message1={message:document.getElementById('box').innerHTML};
-        var msg = new Cube_msg("MESSAGE","BASE_MSG");
-        msg.addrecord(message1);
-        wsock.send(msg.output())
-
-
-    }
     function sendvalue(id){
         if(!isconnected)
         {
             alert("连接未建立！")
             return;
         }
-
-        var message1={message:document.getElementById(id).value};
-        var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        var message1={"Pay_no":document.getElementById(id).value};
+        var msg = new Cube_msg("RECORD_DEFINE","READ");
         msg.addrecord(message1);
         wsock.send(msg.output())
 

@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="div3">
-        <input type="submit" onclick="window.open('index.html')" value="              返回            ">
+        <input type="submit" onclick="location.replace('index.html')" value="              返回            ">
         <input type="button" onclick="jumpmsglist()" value="              个人订单            ">
         <input type="button" onclick="myFunction()" value="              购买            ">
 	  <input type="hidden" id="box">
@@ -142,16 +142,10 @@
             alert("连接未建立！")
             return;
         }
-        var message0={message:input0.innerHTML};
-        var message1={message:input1.value};
-        var message2={message:input2.value};
-        var message3={message:input3.value};
-        var msg = new Cube_msg("MESSAGE","BASE_MSG");
+        var message0={"segment":"Goods_name","text":input1.value};
+        var msg = new Cube_msg("RECORD_DEFINE","WRITE");
         msg.addrecord(message0);
-        msg.addrecord(message1);
-        msg.addrecord(message2);
-        msg.addrecord(message3);
-        wsock.send(msg.output())
+        wsock.send(msg.output());
         alert("购买成功，点击个人订单查询详情");
 
     };
