@@ -39,9 +39,8 @@
 李洪超（测试）：
 -
 访问控制测试：
-  1. 不登录可以越过访问控制的问题在使用挑战登录以后依旧没有解决，所以还是需要在访问控制模块中进行限制。
   
-  2.使用错误的用户名和密码登录，会出现段错误，但message.log文件中返回信息正确，gdb调试发现是user_login.c中的proc_login_response函数中if(return_info->return_code != CHALLENGE)中的代码产生了段错误，但并知道该如何修改。
+  1.使用错误的用户名和密码登录，会出现段错误，但message.log文件中返回信息正确，gdb调试发现是user_login.c中的proc_login_response函数中if(return_info->return_code != CHALLENGE)中的代码产生了段错误，但并知道该如何修改。
     
 ----------------------------------------------------------------
 徐琮坤（可信）：
