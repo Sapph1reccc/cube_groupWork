@@ -122,11 +122,10 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 				return_info->return_Pay_no=dup_str("", 0);
 			}
 		}
+		user_state->curr_state=return_info->return_code;
+		memdb_store(user_state,TYPE_PAIR(USER_DEFINE,SERVER_STATE),NULL);
 	}
 				
-	user_state->curr_state=return_info->return_code;
-	memdb_store(user_state,TYPE_PAIR(USER_DEFINE,SERVER_STATE),NULL);
-	
 	new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);	
 	if(new_msg==NULL)
 		return -EINVAL;
