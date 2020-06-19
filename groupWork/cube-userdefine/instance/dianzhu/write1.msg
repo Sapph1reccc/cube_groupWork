@@ -4,7 +4,7 @@
 	"mode":"INT"
 }
 {
-	"Pay_no":"guke001__20200527153757__YT",
+	"Pay_no":"guke001_20200619103723_SF",
 	"segment":"isFinished",
-	"text":"DIANZHU writes isFinished"
+	"text":"true"
 }

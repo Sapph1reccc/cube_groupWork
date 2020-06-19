@@ -4,7 +4,7 @@
 	"mode":"INT"
 }
 {
-	"Pay_no":"guke001__20200601152637__YT",
+	"Pay_no":"guke001_20200619103723_SF",
 	"segment":"Rec_addr",
-	"text":"safsdsdafadsfasdfasdfs"
+	"text":"北京工业大学"
 }

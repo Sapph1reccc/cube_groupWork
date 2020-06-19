@@ -1,43 +1,90 @@
-time: 0.000404 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/namelist.json!
-time: 0.000522 :read 4 elem from file /root/groupWork/cube-1.3/proc/main/base_define/dispatchnamelist.json!
-time: 0.000578 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/typelist.json!
-time: 0.000753 :read 7 elem from file /root/groupWork/cube-1.3/proc/main/base_define/subtypelist.json!
-time: 0.000798 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/baseflag.json!
-time: 0.000994 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/memdb.json!
-time: 0.001538 :read 7 elem from file /root/groupWork/cube-1.3/proc/main/base_define/msghead.json!
-time: 0.001766 :read 2 elem from file /root/groupWork/cube-1.3/proc/main/base_define/msgrecord.json!
-time: 0.002313 :read 10 elem from file /root/groupWork/cube-1.3/proc/main/base_define/base_msg.json!
-time: 0.002906 :read 8 elem from file /root/groupWork/cube-1.3/proc/main/base_define/return.json!
-time: 0.003130 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/dispatchrecord.json!
-time: 0.003273 :read 2 elem from file /root/groupWork/cube-1.3/proc/main/base_define/exmoduledefine.json!
-time: 0.003389 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/sys_conn.json!
-time: 0.003993 :read 9 elem from file user_define.json!
-time: 0.004361 :read 5 elem from file record_define.json!
-time: 0.024795 :this machine's local uuid is bad5f91dead22e2249193df8600d4d785bef917ac9a8c11d2bbfe9823e76ed93
+time: 0.000326 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/namelist.json!
+time: 0.000431 :read 4 elem from file /root/groupWork/cube-1.3/proc/main/base_define/dispatchnamelist.json!
+time: 0.000521 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/typelist.json!
+time: 0.000692 :read 7 elem from file /root/groupWork/cube-1.3/proc/main/base_define/subtypelist.json!
+time: 0.000738 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/baseflag.json!
+time: 0.001036 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/memdb.json!
+time: 0.001563 :read 7 elem from file /root/groupWork/cube-1.3/proc/main/base_define/msghead.json!
+time: 0.001776 :read 2 elem from file /root/groupWork/cube-1.3/proc/main/base_define/msgrecord.json!
+time: 0.002194 :read 10 elem from file /root/groupWork/cube-1.3/proc/main/base_define/base_msg.json!
+time: 0.002868 :read 8 elem from file /root/groupWork/cube-1.3/proc/main/base_define/return.json!
+time: 0.003116 :read 3 elem from file /root/groupWork/cube-1.3/proc/main/base_define/dispatchrecord.json!
+time: 0.003228 :read 2 elem from file /root/groupWork/cube-1.3/proc/main/base_define/exmoduledefine.json!
+time: 0.003336 :read 1 elem from file /root/groupWork/cube-1.3/proc/main/base_define/sys_conn.json!
+time: 0.003940 :read 9 elem from file user_define.json!
+time: 0.004201 :read 5 elem from file record_define.json!
+time: 0.028200 :this machine's local uuid is bad5f91dead22e2249193df8600d4d785bef917ac9a8c11d2bbfe9823e76ed93
 
-time: 0.030811 :read 1 connector!
+time: 0.034273 :read 1 connector!
 
-time: 0.031013 :read 3 policy from router_policy file!
-time: 0.031045 :system plugin router_proc is prepared!
-time: 0.039334 :system plugin connector_proc is prepared!
-time: 0.039422 :ex_module connector_proc started successfully!
-time: 0.039446 :ex_module router_proc started successfully!
-time: 0.039463 :ex_module websocket_channel started successfully!
-time: 0.039480 :ex_module echo started successfully!
-time: 0.039498 :ex_module msg2channel started successfully!
-time: 0.039517 :ex_module msg_send started successfully!
-time: 0.039534 :ex_module login_user started successfully!
-time: 0.039550 :ex_module print started successfully!
-time: 0.039555 :instance load 8 module!
+time: 0.034540 :read 3 policy from router_policy file!
+time: 0.034579 :system plugin router_proc is prepared!
+time: 0.040404 :system plugin connector_proc is prepared!
+time: 0.040487 :ex_module connector_proc started successfully!
+time: 0.040560 :ex_module router_proc started successfully!
+time: 0.040613 :ex_module msg_send started successfully!
+time: 0.040628 :begin msgfile_send module!
 
-time: 0.039651 :client user_client connect succeed!
+time: 0.040644 :ex_module login_user started successfully!
+time: 0.040678 :ex_module print started successfully!
+time: 0.040687 :instance load 5 module!
 
-time: 0.039728 :begin msgfile_send module!
+time: 0.625074 :client user_client connect succeed!
 
-time: 0.070686 :proc conn client receive 269 data!
+time: 0.636918 :proc conn client receive 269 data!
 
-time: 0.070825 :send 324 data to conn user_client!
+time: 0.637045 :send 324 data to conn user_client!
 
-time: 0.070832 :client user_client send 324 ack data to server !
+time: 0.637055 :client user_client send 324 ack data to server !
 
-time: 0.076755 :router get proc connector_proc's message 
+time: 0.640862 :router get proc connector_proc's message 
+time: 2.041220 :router get proc msg_send's message 
+time: 2.041288 :new msg match path login's policy
+time: 2.047118 :router get proc login_user's message 
+time: 2.047262 :send message to conn process!
+time: 2.047371 :send 281 data to conn user_client!
+
+time: 2.047396 :send (12800  1)message 281 to conn user_client!
+
+time: 2.073052 :proc conn client receive 219 data!
+
+time: 2.076045 :router get proc connector_proc's message 
+time: 2.076086 :remote msg match path login's policy
+time: 2.082084 :router get proc login_user's message 
+time: 2.082131 :new msg match path challenge's policy
+time: 2.082212 :send message to conn process!
+time: 2.086072 :send 281 data to conn user_client!
+
+time: 2.086149 :send (12800  1)message 281 to conn user_client!
+
+time: 2.136902 :proc conn client receive 240 data!
+
+time: 2.141191 :router get proc connector_proc's message 
+time: 2.141261 :remote msg match path challenge's policy
+time: 2.146944 :user kefu login succeed!
+time: 2.152823 :router get proc login_user's message 
+time: 2.158096 :router get proc print's message 
+time: 3.044411 :router get proc msg_send's message 
+time: 3.044475 :new msg match path record's policy
+time: 3.044539 :send message to conn process!
+time: 3.048386 :send 229 data to conn user_client!
+
+time: 3.048436 :send (12816  3)message 229 to conn user_client!
+
+time: 3.089381 :proc conn client receive 263 data!
+
+time: 3.095028 :router get proc connector_proc's message 
+time: 3.095080 :remote msg match path record's policy
+time: 3.117741 :router get proc print's message 
+time: 4.046702 :router get proc msg_send's message 
+time: 4.046750 :new msg match path record's policy
+time: 4.046844 :send message to conn process!
+time: 4.050777 :send 218 data to conn user_client!
+
+time: 4.050814 :send (12816  3)message 218 to conn user_client!
+
+time: 4.077954 :proc conn client receive 263 data!
+
+time: 4.081108 :router get proc connector_proc's message 
+time: 4.081171 :remote msg match path record's policy
+time: 4.086658 :router get proc print's message 

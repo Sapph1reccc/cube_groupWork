@@ -5,6 +5,6 @@
 }
 {
 	"Pay_no":"guke001_20200619103723_SF",
-	"segment":"Goods_num",
-	"text":"17"
+	"segment":"Goods_addr",
+	"text":"货物当前位置：河北"
 }

@@ -52,8 +52,6 @@ int record_server_start(void * sub_proc, void * para)
 		if((type==TYPE(RECORD_DEFINE))&&(subtype==SUBTYPE(RECORD_DEFINE,WRITE)))
 		{
 			ret=proc_record_write(sub_proc,recv_msg);
-			if(ret==MSG_CTRL_EXIT)
-				return MSG_CTRL_EXIT;
 		}
 		if((type==TYPE(RECORD_DEFINE))&&(subtype==SUBTYPE(RECORD_DEFINE,READ)))
 		{
@@ -66,23 +64,18 @@ int record_server_start(void * sub_proc, void * para)
 int proc_record_write(void * sub_proc,void * recv_msg)
 {
 	int ret;
-//	int msg_cir = 0;
 	RECORD(RECORD_DEFINE,RECORD) * record_data;
 	RECORD(RECORD_DEFINE,WRITE) * write_data;
 	RECORD(USER_DEFINE,RETURN) * return_info;
 	RECORD(USER_DEFINE,SERVER_STATE) * user_state;
 
 	void * new_msg;
-//	struct ctrl_message * ctrl_msg;
-	ret=message_get_record(recv_msg,&write_data,0/*msg_cir++*/);
-//	printf("%d\n", msg_cir);
+	
+	ret=message_get_record(recv_msg,&write_data,0);
 	if(ret<0)
 		return ret;
-/*	if(ctrl_msg!=NULL)
-	{
-		ret=ctrl_msg->ctrl; 
-	}
-*/	return_info=Talloc0(sizeof(*return_info));
+
+	return_info=Talloc0(sizeof(*return_info));
 	if(return_info==NULL)
 		return -ENOMEM;
 
@@ -139,14 +132,12 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 			FILE *Customer_order_no = fopen(order_no_path, "a");
 			fprintf(Customer_order_no, "%s\r", order_no);
 			fclose(Customer_order_no);
-			return_info->return_Pay_no=dup_str(order_no, 0);
 		}
 		//顾客带订单号来写，读取所要求的合法订单号
 		else if((Strncmp(write_data->Pay_no, user_name, 7) == 0) && (Strcmp(write_data->Pay_no, "") > 0)){
 			if(Strncmp(write_data->Pay_no, "guke", 4) == 0){	//订单号有效
 				printf("顾客自带订单号写: %s\n", write_data->Pay_no);
 				db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",write_data->Pay_no);
-				return_info->return_Pay_no=dup_str(write_data->Pay_no, 0);
 			}
 			else{	//订单号无效
 				return_info->return_code=INVALID;
@@ -172,7 +163,6 @@ int proc_record_write(void * sub_proc,void * recv_msg)
 			fprintf(Customer_order_no, "%s\n", write_data->Pay_no);
 			fclose(Customer_order_no);
 			db_record=memdb_find_first(TYPE_PAIR(RECORD_DEFINE,RECORD),"Pay_no",write_data->Pay_no);
-			return_info->return_Pay_no=dup_str(write_data->Pay_no, 0);
 		}
 		else{	//订单号无效
 			return_info->return_code=INVALID;

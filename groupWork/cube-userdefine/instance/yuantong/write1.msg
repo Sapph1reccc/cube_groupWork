@@ -4,7 +4,7 @@
 	"mode":"INT"
 }
 {
-	"Pay_no":"guke001__20200527153757__YT",
+	"Pay_no":"guke001_20200619092127_YT",
 	"segment":"Goods_addr",
-	"text":"YUANTONG writes GOODS_ADDR"
+	"text":"当前货物位置：北京"
 }

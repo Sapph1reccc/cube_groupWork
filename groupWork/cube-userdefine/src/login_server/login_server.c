@@ -83,6 +83,7 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 	{
 		return_info->return_code=NOUSER;
 		return_info->return_info=dup_str("no such user!\n",0);
+		return_info->return_Pay_no=dup_str("", 0);
 	}
 	else
 	{
@@ -112,7 +113,7 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 				fclose(out);
 				return_info->return_code=SUCCEED;
 				return_info->return_info=dup_str("login succeed!",0);
-				return_info->role=dup_str(role_name[user_state->role - 1],0);
+				return_info->role=dup_str(role_name[user_state->role - 1], 0);
 				return_info->return_Pay_no=dup_str("", 0);
 			}
 			else
@@ -122,10 +123,11 @@ int proc_login_login(void * sub_proc,void * recv_msg)
 				return_info->return_Pay_no=dup_str("", 0);
 			}
 		}
-		user_state->curr_state=return_info->return_code;
-		memdb_store(user_state,TYPE_PAIR(USER_DEFINE,SERVER_STATE),NULL);
 	}
 				
+	user_state->curr_state=return_info->return_code;
+	memdb_store(user_state,TYPE_PAIR(USER_DEFINE,SERVER_STATE),NULL);
+	
 	new_msg=message_create(TYPE_PAIR(USER_DEFINE,RETURN),recv_msg);	
 	if(new_msg==NULL)
 		return -EINVAL;
