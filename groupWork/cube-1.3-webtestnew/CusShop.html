@@ -43,7 +43,7 @@
         </div>
         <div>
             <h1>付款方信息</h1>
-            <label>付款人地址：<input id="paidaddr"type="plaintext" placeholder="付款人地址" size="40"></label>
+            <label>付款人地址：<input id="paidaddr" type="plaintext" placeholder="付款人地址" size="40"></label>
             <label><input id="username"type="hidden" readonly="readonly" size="40"></label>
             <br>
         </div>
@@ -78,10 +78,7 @@
 	function jumpmsglist(){
 		var s=document.getElementById('box');
 		location.href='Cusmsglist.html?'+'txt='+encodeURI(s.innerHTML);
-
-
-
-
+ 
 	}
 
     function isRece(){
@@ -112,7 +109,7 @@
     var jsonstr = JSON.stringify(plainmsg);
 
  //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
-        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'13999'+'/');
+        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
 
         wsock.onopen = function (e) {
             if (!isconnected) {
@@ -127,6 +124,7 @@
         };
         wsock.onmessage = function (e) {
             var msg;
+            var flag=0;
             msg = JSON.parse(e.data);
   //          if (msg.replace(/(^s*)|(s*$)/g, "").length != 0) {
    //             alert(msg);
@@ -134,6 +132,27 @@
  //           for (var key in msg.RECORD) {
                 
   //          }
+	if((msg.HEAD.record_type=="USER_DEFINE")&&(msg.HEAD.record_subtype=="RETURN"))
+{
+	if(msg.RECORD[0].return_code=="SUCCEED")
+{
+	if((!msg.RECORD[0].return_Pay_no)&&(flag==0))
+{
+	alert("购买成功，点击个人订单查询详情");
+	var message1={"Pay_no":msg.RECORD[0].return_Pay_no,"segment":"Goods_num","text":input2.value};
+	var msg1 = new Cube_msg("RECORD_DEFINE","WRITE");
+      msg1.addrecord(message1);
+      wsock.send(msg1.output());
+
+	var message2={"Pay_no":msg.RECORD[0].return_Pay_no,"segment":"Rec_addr","text":input3.value};
+	var msg2 = new Cube_msg("RECORD_DEFINE","WRITE");
+      msg2.addrecord(message2);
+      wsock.send(msg2.output());
+	
+	flag=1;
+}
+}
+}
         }
 
     function myFunction(){
@@ -145,8 +164,8 @@
         var message0={"segment":"Goods_name","text":input1.value};
         var msg = new Cube_msg("RECORD_DEFINE","WRITE");
         msg.addrecord(message0);
-        wsock.send(msg.output());
-        alert("购买成功，点击个人订单查询详情");
+        wsock.send(msg.output())
+        //alert("购买成功，点击个人订单查询详情");
 
     };
 </script>

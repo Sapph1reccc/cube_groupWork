@@ -34,14 +34,14 @@
 </div>
 <div id="kefu">
     <div>
-        <h1>订单号：<input id="info_no" type="text" style="width: 270px; height: 30px;" readonly="readonly" value="testinfo"></h1>
+        订单号：<input id="info_no" type="text" style="width: 270px; height: 30px;" readonly="readonly" value="">
         <h2>商品信息</h2>
-        <lable>商品名称：<input type="text" value="C语言程序设计" readonly="true"></lable>
-        <lable>商品数量：<input type="text" value="2" readonly="readonly" style="width: 40px;"></lable>
+        <lable>商品名称：<input id="goodsname" type="text" value="" readonly="true"></lable>
+        <lable>商品数量：<input id="goodsnum" type="text" value="" readonly="readonly" style="width: 40px;"></lable>
     </div>
     <div>
         <h2>付款方信息</h2>
-        <label>付款人地址：<input type="text" placeholder="付款人地址" size="40" readonly="readonly"></label>
+        <label>付款人地址：<input id="paidaddr" type="text" placeholder="付款人地址" size="40" readonly="readonly"></label>
     </div>
     <div>
         <h2>发货方信息</h2>
@@ -49,8 +49,8 @@
     </div>
     <div>
         <h2>货物信息</h2>
-        <lable>是否发货：<input type="text" style="width: 40px" value="false" readonly="readonly"></lable>
-        <lable>是否收货：<input type="text" style="width: 40px" value="false" readonly="readonly"></lable>
+        <lable>是否发货：<input id="issend" type="text" style="width: 40px" value="" readonly="readonly"></lable>
+        <lable>是否收货：<input id="isrece" type="text" style="width: 40px" value="" readonly="readonly"></lable>
         <label>货物地址：<input id="goodsaddr" type="text" size="30" readonly="readonly"></label>
     </div>
     <div>
@@ -117,6 +117,7 @@
     };
     wsock.onmessage = function (e) {
         var msg;
+	  var flag=0;
         msg = JSON.parse(e.data);
         //          if (msg.replace(/(^s*)|(s*$)/g, "").length != 0) {
         //             alert(msg);
@@ -124,7 +125,39 @@
         //           for (var key in msg.RECORD) {
 
         //          }
+	if((msg.HEAD.record_type=="USER__DEFINE")&&(msg.HEAD.record_subtype=="RECORD"))
+{
+	document.getElementById('info_no').value=msg.RECORD[0].Pay_no; //订单号
+	document.getElementById('goodsname').value=msg.RECORD[0].Goods_name;//商品名
+	document.getElementById('goodsnum').value=msg.RECORD[0].Goods_num;//商品数量
+	document.getElementById('paidaddr').value=msg.RECORD[0].Rec_addr;//收货地址
+	document.getElementById('sendaddr').value=msg.RECORD[0].Deli_addr;//发货地址
+
+	//是否发货
+	if((msg.RECORD[0].isSent=="")||(msg.RECORD[0].isSent=="false"))
+{
+	document.getElementById('issend').value="false";
+}
+else
+{
+	document.getElementById('issend').value="true";
+}
+
+	//是否收货
+	if((msg.RECORD[0].isReceived=="")||(msg.RECORD[0].isReceived=="false"))
+{
+	document.getElementById('isrece').value="false";
+}
+else
+{
+	document.getElementById('isrece').value="true";
+}
+
+	document.getElementById('goodsaddr').value=msg.RECORD[0].Goods_addr;//当前位置
+
+	//是否完成
 	
+}
     }
 
 
@@ -147,12 +180,10 @@
             alert("连接未建立！")
             return;
         }
-        var message1 = {message:input1.value};
-        var message2 = {message:input2.value};
-        var msg = new Cube_msg("MESSAGE","BASE_MSG");
-        msg.addrecord(message1);
-        msg.addrecord(message2);
-        wsock.send(msg.output());
+        var message1={"Pay_no":input1.value,"segment":"isFinished","text":input2.value};
+	var msg1 = new Cube_msg("RECORD_DEFINE","WRITE");
+      msg1.addrecord(message1);
+      wsock.send(msg1.output());
 
     }
 </script>

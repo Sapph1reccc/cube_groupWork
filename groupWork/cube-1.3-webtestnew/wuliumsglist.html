@@ -33,11 +33,11 @@
 <div id="kefu">
     <div>
         <h1>订单号：</h1>
-	  <input id="info_no" type="text" style="width: 270px; height: 30px;" readonly="readonly" value="testinfo">
+	  <input id="info_no" type="text" style="width: 270px; height: 30px;" readonly="readonly" value="">
     </div>
     <div>
         <h2>付款方信息</h2>
-        <label>付款人地址：<input type="text" placeholder="付款人地址" size="40" readonly="readonly"></label>
+        <label>付款人地址：<input id="paidaddr" type="text" placeholder="付款人地址" size="40" readonly="readonly"></label>
     </div>
     <div>
         <h2>发货方信息</h2>
@@ -45,8 +45,8 @@
     </div>
     <div>
         <h2>货物信息</h2>
-        <lable>是否发货：<input type="text" style="width: 40px" value="false" readonly="readonly"></lable>
-        <lable>是否收货：<input type="text" style="width: 40px" value="false" readonly="readonly"></lable>
+        <lable>是否发货：<input id="issend" type="text" style="width: 40px" value="" readonly="readonly"></lable>
+        <lable>是否收货：<input id="isrece" type="text" style="width: 40px" value="" readonly="readonly"></lable>
         <label>货物地址：<input id="goodsaddr" type="text" placeholder="货物地址" size="30"></label>
     </div>
     <br><br><br>
@@ -54,18 +54,6 @@
         <input type="button" class="t2" id="sure" onclick="myFunction()" value="确认" style="width: 70px; height: 30px;">
     </div>
 </div>
-<script>
-    function isfinish(){
-        var ora=document.getElementsByName('isfinish');
-        for(var i=0;i<ora.length;i++)
-        {
-            if(ora[i].checked==true)
-            {
-                document.getElementById('hide').value=ora[i].value;
-            }
-        }
-    }
-</script>
 <script type="text/javascript" src="message.js"></script>
 <script type="text/javascript">
     var isconnected=false;
@@ -108,6 +96,7 @@
     };
     wsock.onmessage = function (e) {
         var msg;
+	  var flag=0;
         msg = JSON.parse(e.data);
         //          if (msg.replace(/(^s*)|(s*$)/g, "").length != 0) {
         //             alert(msg);
@@ -115,7 +104,39 @@
         //           for (var key in msg.RECORD) {
 
         //          }
-   
+   if((msg.HEAD.record_type=="USER__DEFINE")&&(msg.HEAD.record_subtype=="RECORD"))
+{
+	document.getElementById('info_no').value=msg.RECORD[0].Pay_no; //订单号
+	//商品名
+	//商品数量
+	document.getElementById('paidaddr').value=msg.RECORD[0].Rec_addr;//收货地址
+	document.getElementById('sendaddr').value=msg.RECORD[0].Deli_addr;//发货地址
+
+	//是否发货
+	if((msg.RECORD[0].isSent=="")||(msg.RECORD[0].isSent=="false"))
+{
+	document.getElementById('issend').value="false";
+}
+else
+{
+	document.getElementById('issend').value="true";
+}
+
+	//是否收货
+	if((msg.RECORD[0].isReceived=="")||(msg.RECORD[0].isReceived=="false"))
+{
+	document.getElementById('isrece').value="false";
+}
+else
+{
+	document.getElementById('isrece').value="true";
+}
+
+	//当前位置
+
+	//是否完成
+	
+}	
     }
 
 
@@ -137,12 +158,10 @@
             alert("连接未建立！")
             return;
         }
-        var message0 = {message:input0.value};
-        var message1 = {message:input1.value};
-        var msg = new Cube_msg("MESSAGE","BASE_MSG");
-        msg.addrecord(message0);
-        msg.addrecord(message1);
-        wsock.send(msg.output());
+        var message1={"Pay_no":input0.value,"segment":"Goods_addr","text":input1.value};
+	var msg1 = new Cube_msg("RECORD_DEFINE","WRITE");
+      msg1.addrecord(message1);
+      wsock.send(msg1.output());
 
 
     }

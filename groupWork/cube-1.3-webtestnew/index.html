@@ -43,16 +43,16 @@
 //wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
  //       wsock = new WebSocket('ws://192.168.159.135:12888', 'cube-wsport');
 	if(Role=="顾客"){
-        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'13999'+'/');
+        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'13999'+'/');
 }
 	else if(Role=="店主"){
-        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'14999'+'/');	
+        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'14999'+'/');	
 }
 	else if(Role=="客服"){
-        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'15999'+'/');
+        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'15999'+'/');
 }
 	else if(Role=="物流"){
-        wsock = new WebSocket('ws://'+'192.168.234.128'+':'+'16999'+'/');
+        wsock = new WebSocket('ws://'+'192.168.11.128'+':'+'16999'+'/');
 }
         wsock.onopen = function (e) {
             if (!isconnected) {
@@ -82,7 +82,7 @@
 	else{
 		alert("用户名或密码有误，请核对后再登录");
 		document.getElementById('echo2').value="error";
-	}
+}
 }
 
 	var s=document.getElementById('input1');
